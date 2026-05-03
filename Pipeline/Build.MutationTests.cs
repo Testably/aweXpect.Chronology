@@ -58,7 +58,7 @@ partial class Build
 				                      {
 				                      	"stryker-config": {
 				                      		"project-info": {
-				                      			"name": "github.com/aweXpect/aweXpect.Chronology",
+				                      			"name": "github.com/Testably/aweXpect.Chronology",
 				                      			"module": "{{project.Key.Name}}",
 				                      			"version": "{{branchName}}"
 				                      		},
@@ -115,7 +115,7 @@ partial class Build
 
 			string body = "## :alien: Mutation Results"
 			              + Environment.NewLine
-			              + $"[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FaweXpect%2FaweXpect.Chronology%2Fpull/{prId}/merge)](https://dashboard.stryker-mutator.io/reports/github.com/aweXpect/aweXpect.Chronology/pull/{prId}/merge)"
+			              + $"[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FTestably%2FaweXpect.Chronology%2Fpull/{prId}/merge)](https://dashboard.stryker-mutator.io/reports/github.com/Testably/aweXpect.Chronology/pull/{prId}/merge)"
 			              + Environment.NewLine
 			              + MutationCommentBody;
 
@@ -125,7 +125,7 @@ partial class Build
 				Credentials tokenAuth = new(GithubToken);
 				gitHubClient.Credentials = tokenAuth;
 				IReadOnlyList<IssueComment> comments =
-					await gitHubClient.Issue.Comment.GetAllForIssue("aweXpect", "aweXpect.Chronology", prId.Value);
+					await gitHubClient.Issue.Comment.GetAllForIssue("Testably", "aweXpect.Chronology", prId.Value);
 				long? commentId = null;
 				Log.Information($"Found {comments.Count} comments");
 				foreach (IssueComment comment in comments)
@@ -140,12 +140,12 @@ partial class Build
 				if (commentId == null)
 				{
 					Log.Information($"Create comment:\n{body}");
-					await gitHubClient.Issue.Comment.Create("aweXpect", "aweXpect.Chronology", prId.Value, body);
+					await gitHubClient.Issue.Comment.Create("Testably", "aweXpect.Chronology", prId.Value, body);
 				}
 				else
 				{
 					Log.Information($"Update comment:\n{body}");
-					await gitHubClient.Issue.Comment.Update("aweXpect", "aweXpect.Chronology", commentId.Value, body);
+					await gitHubClient.Issue.Comment.Update("Testably", "aweXpect.Chronology", commentId.Value, body);
 				}
 			}
 		});
