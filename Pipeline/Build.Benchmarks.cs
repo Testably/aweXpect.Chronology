@@ -54,7 +54,7 @@ partial class Build
 				Credentials tokenAuth = new(GithubToken);
 				gitHubClient.Credentials = tokenAuth;
 				IReadOnlyList<IssueComment> comments =
-					await gitHubClient.Issue.Comment.GetAllForIssue("aweXpect", "aweXpect.Chronology", prId.Value);
+					await gitHubClient.Issue.Comment.GetAllForIssue("Testably", "aweXpect.Chronology", prId.Value);
 				long? commentId = null;
 				Log.Information($"Found {comments.Count} comments");
 				foreach (IssueComment comment in comments)
@@ -69,12 +69,12 @@ partial class Build
 				if (commentId == null)
 				{
 					Log.Information($"Create comment:\n{body}");
-					await gitHubClient.Issue.Comment.Create("aweXpect", "aweXpect.Chronology", prId.Value, body);
+					await gitHubClient.Issue.Comment.Create("Testably", "aweXpect.Chronology", prId.Value, body);
 				}
 				else
 				{
 					Log.Information($"Update comment:\n{body}");
-					await gitHubClient.Issue.Comment.Update("aweXpect", "aweXpect.Chronology", commentId.Value, body);
+					await gitHubClient.Issue.Comment.Update("Testably", "aweXpect.Chronology", commentId.Value, body);
 				}
 			}
 		});
