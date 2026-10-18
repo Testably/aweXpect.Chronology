@@ -4,8 +4,8 @@ public sealed partial class TimeSpanExtensions
 {
 	public sealed class MinutesTests
 	{
-		[Theory]
-		[InlineData(1.2)]
+		[Test]
+		[Arguments(1.2)]
 		public async Task Minutes_Double_ShouldReturnCorrectTimeSpan(double minutes)
 		{
 			TimeSpan expected = TimeSpan.FromMinutes(minutes);
@@ -15,8 +15,8 @@ public sealed partial class TimeSpanExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Theory]
-		[InlineData(1.2, 3.4)]
+		[Test]
+		[Arguments(1.2, 3.4)]
 		public async Task Minutes_Double_WithOffset_ShouldReturnCorrectTimeSpan(double minutes,
 			double offsetSeconds)
 		{
@@ -28,8 +28,8 @@ public sealed partial class TimeSpanExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Theory]
-		[InlineData(1)]
+		[Test]
+		[Arguments(1)]
 		public async Task Minutes_Int_ShouldReturnCorrectTimeSpan(int minutes)
 		{
 			TimeSpan expected = TimeSpan.FromMinutes(minutes);
@@ -39,8 +39,8 @@ public sealed partial class TimeSpanExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Theory]
-		[InlineData(1, 3.4)]
+		[Test]
+		[Arguments(1, 3.4)]
 		public async Task Minutes_Int_WithOffset_ShouldReturnCorrectTimeSpan(int minutes,
 			double offsetSeconds)
 		{

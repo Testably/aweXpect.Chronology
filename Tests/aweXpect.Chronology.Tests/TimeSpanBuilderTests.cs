@@ -2,7 +2,7 @@
 
 public sealed class TimeSpanBuilderTests
 {
-	[Fact]
+	[Test]
 	public async Task MinusOperator_ShouldSubtractTimeSpan()
 	{
 		TimeSpanBuilder expected = 2.Hours();
@@ -13,7 +13,7 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task PlusOperator_ShouldAddTimeSpan()
 	{
 		TimeSpanBuilder expected = 4.Hours();
@@ -24,7 +24,7 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task MultiplyOperator_ShouldAddTimeSpan()
 	{
 		TimeSpanBuilder expected = 6.Hours();
@@ -35,7 +35,7 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task MultiplyOperator_WhenMultiplierIsNaN_ShouldThrowArgumentException()
 	{
 		TimeSpanBuilder builder = new(1.Hours());
@@ -48,7 +48,7 @@ public sealed class TimeSpanBuilderTests
 			.Because("the message suffix with the parameter name differs between .NET Framework and .NET");
 	}
 
-	[Fact]
+	[Test]
 	public async Task MultiplyOperator_WhenResultHasFractionalTicks_ShouldRoundToNearestTick()
 	{
 		TimeSpanBuilder builder = new(TimeSpan.FromTicks(1));
@@ -59,7 +59,7 @@ public sealed class TimeSpanBuilderTests
 			.Because("the BCL rounds 1.5 ticks instead of truncating them");
 	}
 
-	[Fact]
+	[Test]
 	public async Task MultiplyOperator_WhenResultIsTooLarge_ShouldThrowOverflowException()
 	{
 		TimeSpanBuilder builder = new(10000.Days());
@@ -70,7 +70,7 @@ public sealed class TimeSpanBuilderTests
 			.WithMessage("TimeSpan overflowed because the duration is too long.");
 	}
 
-	[Fact]
+	[Test]
 	public async Task DivisionOperator_ShouldAddTimeSpan()
 	{
 		TimeSpanBuilder expected = 2.Hours();
@@ -81,7 +81,7 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task DivisionOperator_WhenDividingZeroByZero_ShouldThrowOverflowException()
 	{
 		TimeSpanBuilder builder = new(TimeSpan.Zero);
@@ -93,7 +93,7 @@ public sealed class TimeSpanBuilderTests
 			.Because("0 / 0.0 is NaN, which the BCL rejects as an overflow");
 	}
 
-	[Fact]
+	[Test]
 	public async Task DivisionOperator_WhenDivisorIsNaN_ShouldThrowArgumentException()
 	{
 		TimeSpanBuilder builder = new(1.Hours());
@@ -106,7 +106,7 @@ public sealed class TimeSpanBuilderTests
 			.Because("the message suffix with the parameter name differs between .NET Framework and .NET");
 	}
 
-	[Fact]
+	[Test]
 	public async Task DivisionOperator_WhenDivisorIsZero_ShouldThrowOverflowException()
 	{
 		TimeSpanBuilder builder = new(1.Hours());
@@ -117,7 +117,7 @@ public sealed class TimeSpanBuilderTests
 			.WithMessage("TimeSpan overflowed because the duration is too long.");
 	}
 
-	[Fact]
+	[Test]
 	public async Task DivisionOperator_WhenResultHasFractionalTicks_ShouldRoundToNearestTick()
 	{
 		TimeSpanBuilder builder = new(TimeSpan.FromTicks(3));
@@ -128,7 +128,7 @@ public sealed class TimeSpanBuilderTests
 			.Because("the BCL rounds 1.5 ticks instead of truncating them");
 	}
 
-	[Fact]
+	[Test]
 	public async Task UnaryMinusOperator_ShouldReturnNegatedValue()
 	{
 		TimeSpan expected = TimeSpan.FromHours(-1);
@@ -138,7 +138,7 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task ImplicitOperator_ShouldConvertToTimeSpan()
 	{
 		TimeSpan expected = new(2, 3, 4);
@@ -150,7 +150,7 @@ public sealed class TimeSpanBuilderTests
 	}
 
 #if NET8_0_OR_GREATER
-	[Fact]
+	[Test]
 	public async Task ImplicitOperator_ShouldConvertToTimeOnly()
 	{
 		TimeOnly expected = new(2, 3, 4);

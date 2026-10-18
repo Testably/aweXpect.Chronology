@@ -4,7 +4,7 @@ public sealed partial class DateTimeExtensions
 {
 	public sealed class BeforeTests
 	{
-		[Fact]
+		[Test]
 		public async Task WithDateTimeBuilderAndTimeSpanBuilder_ShouldSubtractTimeSpanFromDateTime()
 		{
 			DateTime expected = new(2024, 12, 24, 21, 0, 0);
@@ -14,7 +14,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task WithDateTimeBuilderAndTimeSpan_ShouldSubtractTimeSpanFromDateTime()
 		{
 			DateTime expected = new(2024, 12, 24, 21, 0, 0);
@@ -25,7 +25,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task WithDateTimeAndTimeSpanBuilder_ShouldSubtractTimeSpanFromDateTime()
 		{
 			DateTime expected = new(2024, 12, 24, 21, 0, 0);
@@ -36,7 +36,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task WithDateTimeAndTimeSpan_ShouldSubtractTimeSpanFromDateTime()
 		{
 			DateTime expected = new(2024, 12, 24, 21, 0, 0);

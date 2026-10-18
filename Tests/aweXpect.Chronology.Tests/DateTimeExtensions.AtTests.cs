@@ -4,7 +4,7 @@ public sealed partial class DateTimeExtensions
 {
 	public sealed class AtTests
 	{
-		[Fact]
+		[Test]
 		public async Task FromBuilder_WithTimeSpan_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 15);
@@ -14,7 +14,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromBuilder_WithHourAndMinutes_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 00);
@@ -24,7 +24,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromBuilder_WithHourMinutesAndSeconds_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 59);
@@ -34,7 +34,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromBuilder_WithHourMinutesSecondsAndMilliseconds_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 0, 150, DateTimeKind.Unspecified);
@@ -44,7 +44,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateTime_WithTimeSpan_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 15);
@@ -55,7 +55,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateTime_WithHourAndMinutes_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 00);
@@ -66,7 +66,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateTime_WithHourMinutesAndSeconds_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 59);
@@ -77,7 +77,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateTime_WithHourMinutesSecondsAndMilliseconds_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 0, 150, DateTimeKind.Unspecified);
@@ -89,7 +89,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task FromDateOnly_WithTimeSpan_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 15);
@@ -100,7 +100,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateOnly_WithHourAndMinutes_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 00);
@@ -111,7 +111,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateOnly_WithHourMinutesAndSeconds_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 59);
@@ -122,7 +122,7 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task FromDateOnly_WithHourMinutesSecondsAndMilliseconds_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 0, 150, DateTimeKind.Unspecified);

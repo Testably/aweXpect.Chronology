@@ -31,7 +31,7 @@ partial class Build
 	Dictionary<Project, Project[]> MutationTestProjects => new()
 	{
 		{
-			Solution.aweXpect_Chronology, UnitTestProjects
+			Solution.aweXpect_Chronology, [..UnitTestProjects, Solution.Tests.aweXpect_Chronology_Api_Tests,]
 		},
 	};
 
@@ -88,7 +88,7 @@ partial class Build
 				Log.Debug($"Created '{configFile}':{Environment.NewLine}{configText}");
 
 				string arguments =
-					$"-f \"{configFile}\" -O \"{strykerOutputDirectory}\" -r \"Markdown\" -r \"cleartext\" -r \"json\"";
+					$"-f \"{configFile}\" -O \"{strykerOutputDirectory}\" -r \"Markdown\" -r \"cleartext\" -r \"json\" --test-runner mtp";
 
 				string executable = EnvironmentInfo.IsWin ? "dotnet-stryker.exe" : "dotnet-stryker";
 				IProcess process = ProcessTasks.StartProcess(

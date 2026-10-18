@@ -4,7 +4,7 @@ public sealed partial class DateTimeExtensions
 {
 	public sealed class MonthTests
 	{
-		[Fact]
+		[Test]
 		public async Task January_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 01, 29);
@@ -15,7 +15,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task January_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 01, 29);
@@ -26,7 +26,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task February_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 02, 28);
@@ -37,7 +37,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task February_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 02, 28);
@@ -48,7 +48,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task March_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 03, 27);
@@ -59,7 +59,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task March_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 03, 27);
@@ -70,7 +70,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task April_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 04, 26);
@@ -81,7 +81,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task April_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 04, 26);
@@ -92,7 +92,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task May_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 05, 25);
@@ -103,7 +103,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task May_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 05, 25);
@@ -114,7 +114,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task June_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 06, 24);
@@ -125,7 +125,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task June_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 06, 24);
@@ -136,7 +136,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task July_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 07, 23);
@@ -147,7 +147,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task July_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 07, 23);
@@ -158,7 +158,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task August_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 08, 22);
@@ -169,7 +169,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task August_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 08, 22);
@@ -180,7 +180,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task September_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 09, 21);
@@ -191,7 +191,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task September_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 09, 21);
@@ -202,7 +202,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task October_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 10, 20);
@@ -213,7 +213,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task October_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 10, 20);
@@ -224,7 +224,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task November_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 11, 19);
@@ -235,7 +235,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task November_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 11, 19);
@@ -246,7 +246,7 @@ public sealed partial class DateTimeExtensions
 		}
 #endif
 
-		[Fact]
+		[Test]
 		public async Task December_ShouldReturnCorrectDateTime()
 		{
 			DateTime expected = new(2024, 12, 18);
@@ -257,7 +257,7 @@ public sealed partial class DateTimeExtensions
 		}
 
 #if NET8_0_OR_GREATER
-		[Fact]
+		[Test]
 		public async Task December_ShouldReturnCorrectDateOnly()
 		{
 			DateOnly expected = new(2024, 12, 18);
