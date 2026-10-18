@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Nuke.Common;
-using Nuke.Common.IO;
-using Nuke.Common.Tools.DotNet;
+using Fallout.Common;
+using Fallout.Common.IO;
+using Fallout.Common.Tools.DotNet;
 using Octokit;
 using Serilog;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
+using static Fallout.Common.Tools.DotNet.DotNetTasks;
 
 // ReSharper disable AllUnderscoreLocalParameterName
 
@@ -50,7 +50,7 @@ partial class Build
 			Log.Debug("Pull request number: {PullRequestId}", prId);
 			if (prId != null)
 			{
-				GitHubClient gitHubClient = new(new ProductHeaderValue("Nuke"));
+				GitHubClient gitHubClient = new(new ProductHeaderValue("Fallout"));
 				Credentials tokenAuth = new(GithubToken);
 				gitHubClient.Credentials = tokenAuth;
 				IReadOnlyList<IssueComment> comments =

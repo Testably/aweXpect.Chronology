@@ -1,12 +1,12 @@
-using Nuke.Common;
-using Nuke.Common.IO;
-using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Utilities.Collections;
+using Fallout.Common;
+using Fallout.Common.IO;
+using Fallout.Common.Tools.DotNet;
+using Fallout.Common.Utilities.Collections;
 using Serilog;
 using System;
 using System.Linq;
-using Nuke.Common.Utilities;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
+using Fallout.Common.Utilities;
+using static Fallout.Common.Tools.DotNet.DotNetTasks;
 
 // ReSharper disable AllUnderscoreLocalParameterName
 
