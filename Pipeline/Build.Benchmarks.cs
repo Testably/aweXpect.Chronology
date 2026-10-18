@@ -41,48 +41,57 @@ partial class Build
 		});
 
 	Target BenchmarkComment => _ => _
-		.After(BenchmarkDotNet)
-		.OnlyWhenDynamic(() => GitHubActions.IsPullRequest)
 		.Executes(async () =>
 		{
-			string body = CreateBenchmarkCommentBody();
-			int? prId = GitHubActions.PullRequestNumber;
-			Log.Debug("Pull request number: {PullRequestId}", prId);
-			if (prId != null)
+			// The artifact is untrusted, because the pull request controls the code that produces it, so the pull
+			// request to comment on comes from the event of the workflow run.
+			int? prId = await BuildExtensions.ResolvePullRequestOfWorkflowRun(GithubToken);
+			if (prId == null)
 			{
-				GitHubClient gitHubClient = new(new ProductHeaderValue("Fallout"));
-				Credentials tokenAuth = new(GithubToken);
-				gitHubClient.Credentials = tokenAuth;
-				IReadOnlyList<IssueComment> comments =
-					await gitHubClient.Issue.Comment.GetAllForIssue("Testably", "aweXpect.Chronology", prId.Value);
-				long? commentId = null;
-				Log.Information($"Found {comments.Count} comments");
-				foreach (IssueComment comment in comments)
-				{
-					if (comment.Body.Contains("## :rocket: Benchmark Results"))
-					{
-						Log.Information($"Found comment: {comment.Body}");
-						commentId = comment.Id;
-					}
-				}
+				Log.Information("Skip writing a comment, as the workflow run belongs to no pull request.");
+				return;
+			}
 
-				if (commentId == null)
+			await "Benchmarks".DownloadArtifactTo(ArtifactsDirectory, GithubToken);
+			if (!File.Exists(ArtifactsDirectory / "Benchmarks" / "results" /
+			                 "aweXpect.Chronology.Benchmarks.HappyCaseBenchmarks-report-github.md"))
+			{
+				Log.Information("Skip writing a comment, as the workflow run produced no benchmark report.");
+				return;
+			}
+
+			string body = CreateBenchmarkCommentBody().AsUntrustedCommentContent();
+			GitHubClient gitHubClient = new(new ProductHeaderValue("Fallout"));
+			Credentials tokenAuth = new(GithubToken);
+			gitHubClient.Credentials = tokenAuth;
+			IReadOnlyList<IssueComment> comments =
+				await gitHubClient.Issue.Comment.GetAllForIssue("Testably", "aweXpect.Chronology", prId.Value);
+			long? commentId = null;
+			Log.Information($"Found {comments.Count} comments");
+			foreach (IssueComment comment in comments)
+			{
+				if (comment.IsPipelineComment("## :rocket: Benchmark Results"))
 				{
-					Log.Information($"Create comment:\n{body}");
-					await gitHubClient.Issue.Comment.Create("Testably", "aweXpect.Chronology", prId.Value, body);
+					Log.Information($"Found comment: {comment.Body}");
+					commentId = comment.Id;
 				}
-				else
-				{
-					Log.Information($"Update comment:\n{body}");
-					await gitHubClient.Issue.Comment.Update("Testably", "aweXpect.Chronology", commentId.Value, body);
-				}
+			}
+
+			if (commentId == null)
+			{
+				Log.Information($"Create comment:\n{body}");
+				await gitHubClient.Issue.Comment.Create("Testably", "aweXpect.Chronology", prId.Value, body);
+			}
+			else
+			{
+				Log.Information($"Update comment:\n{body}");
+				await gitHubClient.Issue.Comment.Update("Testably", "aweXpect.Chronology", commentId.Value, body);
 			}
 		});
 
 	Target Benchmarks => _ => _
 		.DependsOn(BenchmarkDotNet)
-		.DependsOn(BenchmarkResult)
-		.DependsOn(BenchmarkComment);
+		.DependsOn(BenchmarkResult);
 
 	string CreateBenchmarkCommentBody()
 	{
