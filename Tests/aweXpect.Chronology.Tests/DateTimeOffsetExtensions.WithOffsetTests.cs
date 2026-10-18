@@ -4,7 +4,7 @@ public sealed class DateTimeOffsetExtensions
 {
 	public sealed class WithOffsetTests
 	{
-		[Fact]
+		[Test]
 		public async Task WithDateTime_ShouldApplyOffset()
 		{
 			DateTimeOffset expected = new(2024, 12, 24, 21, 0, 0, TimeSpan.FromHours(7.5));
@@ -15,7 +15,7 @@ public sealed class DateTimeOffsetExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task WithDateTimeBuilder_ShouldApplyOffset()
 		{
 			DateTimeOffset expected = new(2024, 12, 24, 21, 0, 0, TimeSpan.FromHours(7.5));
@@ -26,7 +26,7 @@ public sealed class DateTimeOffsetExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Fact]
+		[Test]
 		public async Task WithDateBuilder_ShouldApplyOffset()
 		{
 			DateTimeOffset expected = new(2024, 12, 24, 0, 0, 0, TimeSpan.FromHours(7.5));

@@ -6,7 +6,7 @@ using aweXpect.Core;
 using aweXpect.Results;
 using aweXpect.Snapshots;
 using aweXpect.Snapshots.PublicApi;
-using NUnit.Framework;
+using TUnit.Core;
 // ReSharper disable ExplicitCallerInfoArgument
 
 namespace aweXpect.Chronology.Api.Tests;
@@ -25,9 +25,10 @@ public sealed class ApiApprovalTests
 		"aweXpect.Chronology",
 	];
 
-	[TestCaseSource(nameof(Builds))]
-	public async Task VerifyPublicApi((string assemblyName, string framework) build)
-		=> await MatchesPublicApiSnapshot(build.assemblyName, build.framework);
+	[Test]
+	[MethodDataSource(nameof(Builds))]
+	public async Task VerifyPublicApi(string assemblyName, string framework)
+		=> await MatchesPublicApiSnapshot(assemblyName, framework);
 
 	/// <summary>
 	///     Execute this test to update the expected public API to the current API surface.
@@ -57,7 +58,7 @@ public sealed class ApiApprovalTests
 		=> Expect.That(Helper.GetAssemblyFile(framework, assemblyName))
 			.MatchesPublicApiSnapshot(callerMemberName: assemblyName).Named(framework);
 
-	private static IEnumerable<(string, string)> Builds()
+	public static IEnumerable<(string, string)> Builds()
 		=> AssemblyNames.SelectMany(assemblyName => Helper.GetTargetFrameworks()
 			.Select(framework => (assemblyName, framework)));
 }

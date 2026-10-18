@@ -2,7 +2,7 @@
 
 public sealed class DateTimeBuilderTests
 {
-	[Fact]
+	[Test]
 	public async Task MinusOperator_ShouldSubtractTimeSpan()
 	{
 		DateTimeBuilder expected = 23.March(2024).At(10, 00);
@@ -13,7 +13,7 @@ public sealed class DateTimeBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task PlusOperator_ShouldAddTimeSpan()
 	{
 		DateTimeBuilder expected = 23.March(2024).At(14, 00);
@@ -24,7 +24,7 @@ public sealed class DateTimeBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 
-	[Fact]
+	[Test]
 	public async Task ImplicitOperator_ShouldConvertToDateTime()
 	{
 		DateTime expected = new(2024, 03, 23, 12, 13, 14);
@@ -36,7 +36,7 @@ public sealed class DateTimeBuilderTests
 	}
 
 #if NET8_0_OR_GREATER
-	[Fact]
+	[Test]
 	public async Task ImplicitOperator_ShouldConvertToDateOnly()
 	{
 		DateOnly expected = new(2024, 03, 23);
@@ -49,7 +49,7 @@ public sealed class DateTimeBuilderTests
 #endif
 
 #if NET8_0_OR_GREATER
-	[Fact]
+	[Test]
 	public async Task ImplicitOperator_ShouldConvertToTimeOnly()
 	{
 		TimeOnly expected = new(12, 13, 14);

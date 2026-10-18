@@ -4,8 +4,8 @@ public sealed partial class TimeSpanExtensions
 {
 	public sealed class DaysTests
 	{
-		[Theory]
-		[InlineData(1.2)]
+		[Test]
+		[Arguments(1.2)]
 		public async Task Days_Double_ShouldReturnCorrectTimeSpan(double days)
 		{
 			TimeSpan expected = TimeSpan.FromDays(days);
@@ -15,8 +15,8 @@ public sealed partial class TimeSpanExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Theory]
-		[InlineData(1.2, 3.4)]
+		[Test]
+		[Arguments(1.2, 3.4)]
 		public async Task Days_Double_WithOffset_ShouldReturnCorrectTimeSpan(double days,
 			double offsetSeconds)
 		{
@@ -28,8 +28,8 @@ public sealed partial class TimeSpanExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Theory]
-		[InlineData(1)]
+		[Test]
+		[Arguments(1)]
 		public async Task Days_Int_ShouldReturnCorrectTimeSpan(int days)
 		{
 			TimeSpan expected = days.Days();
@@ -39,8 +39,8 @@ public sealed partial class TimeSpanExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
-		[Theory]
-		[InlineData(1, 3.4)]
+		[Test]
+		[Arguments(1, 3.4)]
 		public async Task Days_Int_WithOffset_ShouldReturnCorrectTimeSpan(int days, double offsetSeconds)
 		{
 			TimeSpan offset = TimeSpan.FromSeconds(offsetSeconds);
