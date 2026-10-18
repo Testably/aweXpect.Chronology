@@ -30,8 +30,11 @@
                 &lt;HasMember&gt;
                     &lt;And&gt;
                         &lt;Kind Is="Method" /&gt;
-                        &lt;HasAttribute Name="Xunit.FactAttribute" Inherited="True" /&gt;
-                        &lt;HasAttribute Name="Xunit.TheoryAttribute" Inherited="True" /&gt;
+                        &lt;Or&gt;
+                            &lt;HasAttribute Name="Xunit.FactAttribute" Inherited="True" /&gt;
+                            &lt;HasAttribute Name="Xunit.TheoryAttribute" Inherited="True" /&gt;
+                            &lt;HasAttribute Name="TUnit.Core.TestAttribute" Inherited="True" /&gt;
+                        &lt;/Or&gt;
                     &lt;/And&gt;
                 &lt;/HasMember&gt;
             &lt;/And&gt;
@@ -76,8 +79,11 @@
             &lt;Entry.Match&gt;
                 &lt;And&gt;
                     &lt;Kind Is="Method" /&gt;
-                    &lt;HasAttribute Name="Xunit.FactAttribute" Inherited="false" /&gt;
-                    &lt;HasAttribute Name="Xunit.TheoryAttribute" Inherited="false" /&gt;
+                    &lt;Or&gt;
+                        &lt;HasAttribute Name="Xunit.FactAttribute" Inherited="false" /&gt;
+                        &lt;HasAttribute Name="Xunit.TheoryAttribute" Inherited="false" /&gt;
+                        &lt;HasAttribute Name="TUnit.Core.TestAttribute" Inherited="false" /&gt;
+                    &lt;/Or&gt;
                 &lt;/And&gt;
             &lt;/Entry.Match&gt;
 
