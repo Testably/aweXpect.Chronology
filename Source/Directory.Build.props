@@ -14,12 +14,6 @@
 		<PackageIcon>Docs/logo.png</PackageIcon>
 		<PackageReadmeFile>Docs/README.md</PackageReadmeFile>
 	</PropertyGroup>
-	
-	<PropertyGroup>
-		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)/../strongname.snk</AssemblyOriginatorKeyFile>
-		<SignAssembly>True</SignAssembly>
-		<PublicKey>0024000004800000940000000602000000240000525341310004000001000100750cb6814b72ba9914df0cd9ec887e8ca64c1a5aa7aeadc5893c3660e52f255ebb3ef4fd8b6d775071cd6ee869211576a841be97c2d463cbcb12329a5ae77a72a901fe1218b55fbf3ce36cb3d56e1a9a2244a259281db8ff596d3a6fbbed00e3c0f3aa2d567d09c5c8662314b1c03ec418acbb9719dd922c0cea18a4f4e0bfae</PublicKey>
-	</PropertyGroup>
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
