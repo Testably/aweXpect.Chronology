@@ -5,19 +5,13 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Testably_aweXpect.Chronology&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Testably_aweXpect.Chronology)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FTestably%2FaweXpect.Chronology%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/Testably/aweXpect.Chronology/main)
 
-Extension methods for creating chronology objects like `TimeSpan` or `DateTime` that read more natural.
+Extension methods for creating chronology objects like `TimeSpan` or `DateTime` that read more naturally.
 
 
 ## Installation
 
 ```shell
 dotnet add package aweXpect.Chronology
-```
-
-Or add a `<PackageReference>` to your project file:
-
-```xml
-<PackageReference Include="aweXpect.Chronology" Version="*" />
 ```
 
 Supported target frameworks: **.NET Standard 2.0**, **.NET 8**, **.NET 10**.
