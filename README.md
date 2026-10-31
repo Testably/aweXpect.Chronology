@@ -7,6 +7,8 @@
 
 Extension methods for creating chronology objects like `TimeSpan` or `DateTime` that read more naturally.
 
+The full documentation is available at [docs.testably.org](https://docs.testably.org/aweXpect/extensions/aweXpect.Chronology/).
+
 
 ## Installation
 

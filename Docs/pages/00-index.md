@@ -1,10 +1,12 @@
+---
+description: Extension methods that create TimeSpan, DateTime, DateTimeOffset, DateOnly and TimeOnly values in a readable way, e.g. 5.Seconds() or 24.December(2024).
+---
+
 import PackageInstall from '@site/src/components/PackageInstall';
 
 # aweXpect.Chronology
 
-[aweXpect.Chronology](https://github.com/Testably/aweXpect.Chronology) contains extension methods that create
-`TimeSpan`, `DateTime`, `DateTimeOffset`, `DateOnly` and `TimeOnly` values in a readable way, e.g. `5.Seconds()` or
-`24.December(2024)`. It does not depend on aweXpect, so you can use it in any code.
+[aweXpect.Chronology](https://github.com/Testably/aweXpect.Chronology) contains extension methods that create `TimeSpan`, `DateTime`, `DateTimeOffset`, `DateOnly` and `TimeOnly` values in a readable way, e.g. `5.Seconds()` or `24.December(2024)`. It belongs to the [aweXpect](/aweXpect) family, but does not depend on aweXpect, so you can use it in any code.
 
 ## Installation
 
@@ -16,8 +18,9 @@ The extension methods are in the `aweXpect.Chronology` namespace:
 using aweXpect.Chronology;
 ```
 
-Supported target frameworks: **.NET Standard 2.0**, **.NET 8**, **.NET 10**.
-`DateOnly` and `TimeOnly` conversions require .NET 8 or higher.
+:::info[Target frameworks]
+The package supports .NET Standard 2.0, .NET 8 and .NET 10. The `DateOnly` and `TimeOnly` conversions require .NET 8 or later.
+:::
 
 ## Reference
 
