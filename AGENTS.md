@@ -20,7 +20,7 @@ Correctness is a must. The other goals are strong defaults and win in this order
 
 - Run the relevant tests before pushing: `dotnet test` runs all test projects (TUnit on the Microsoft.Testing.Platform). On Windows this includes `net48`.
 - Any public API change must update the snapshots in `Tests/aweXpect.Chronology.Api.Tests` (one per library target framework). Review the diff, commit the updated `*.awexpect-snapshot.txt` files and never commit `*.awexpect-snapshot.pending` files. See [workflows](Docs/agents/workflows.md#public-api-snapshots).
-- New or changed public API also needs the README updated: it is the NuGet readme and the page published on docs.testably.org.
+- New or changed public API also needs the README (the NuGet readme) and `Docs/pages/00-index.md` (the page published on docs.testably.org) updated.
 - All code is covered by unit tests. CI checks coverage (SonarCloud quality gate, more than 90 %) and mutation score (Stryker.NET).
 
 ## Repository Conventions

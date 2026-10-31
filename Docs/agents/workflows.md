@@ -55,8 +55,8 @@ dotnet run -c Release --project Benchmarks/aweXpect..Chronology.Benchmarks -- --
 
 ## Documentation
 
-- `README.md` is the user documentation: a reference table and a section per area. Update it with every public API change.
-- `Docs/pages/00-index.md` embeds the README (`{README}`) for docs.testably.org. After a successful `Build` workflow on `main`, `notify-docs-site.yml` triggers a rebuild of `Testably/Testably.Site`.
+- `README.md` (GitHub and NuGet) and `Docs/pages/00-index.md` (docs.testably.org) are the user documentation: a reference table and a section per area. They are maintained separately; update both with every public API change.
+- After a successful `Build` workflow on `main`, `notify-docs-site.yml` triggers a rebuild of `Testably/Testably.Site`.
 - The README is packed into the NuGet package; `Pack` adjusts its badges to the release version.
 - `Docs/agents/` holds this guide and is not published.
 
