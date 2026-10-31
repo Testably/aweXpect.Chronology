@@ -9,7 +9,7 @@
 		<Copyright>Copyright (c) 2024 - $([System.DateTime]::Now.ToString('yyyy')) Valentin Breuß</Copyright>
 		<RepositoryUrl>https://github.com/Testably/aweXpect.Chronology.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageProjectUrl>https://docs.testably.org/Chronology</PackageProjectUrl>
+		<PackageProjectUrl>https://docs.testably.org/aweXpect/extensions/aweXpect.Chronology</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>Docs/logo.png</PackageIcon>
 		<PackageReadmeFile>Docs/README.md</PackageReadmeFile>
