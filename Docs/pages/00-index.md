@@ -1,5 +1,7 @@
 ---
 description: Extension methods that create TimeSpan, DateTime, DateTimeOffset, DateOnly and TimeOnly values in a readable way, e.g. 5.Seconds() or 24.December(2024).
+sidebar_position: 7.5
+sidebar_label: Chronology
 ---
 
 import PackageInstall from '@site/src/components/PackageInstall';
