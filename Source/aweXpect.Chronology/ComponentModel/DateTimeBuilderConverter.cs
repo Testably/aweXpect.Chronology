@@ -23,25 +23,27 @@ public sealed class DateTimeBuilderConverter : TypeConverter
 	public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
 		Type destinationType)
 	{
-		if (value is DateTimeBuilder builder)
+		if (value is not DateTimeBuilder builder)
 		{
-			if (destinationType == typeof(DateTime))
-			{
-				return (DateTime)builder;
-			}
+			return base.ConvertTo(context, culture, value, destinationType);
+		}
+
+		if (destinationType == typeof(DateTime))
+		{
+			return (DateTime)builder;
+		}
 #if NET8_0_OR_GREATER
 
-			if (destinationType == typeof(DateOnly))
-			{
-				return (DateOnly)builder;
-			}
-
-			if (destinationType == typeof(TimeOnly))
-			{
-				return (TimeOnly)builder;
-			}
-#endif
+		if (destinationType == typeof(DateOnly))
+		{
+			return (DateOnly)builder;
 		}
+
+		if (destinationType == typeof(TimeOnly))
+		{
+			return (TimeOnly)builder;
+		}
+#endif
 
 		return base.ConvertTo(context, culture, value, destinationType);
 	}

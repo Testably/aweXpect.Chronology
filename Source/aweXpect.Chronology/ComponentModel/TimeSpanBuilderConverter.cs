@@ -22,20 +22,22 @@ public sealed class TimeSpanBuilderConverter : TypeConverter
 	public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
 		Type destinationType)
 	{
-		if (value is TimeSpanBuilder builder)
+		if (value is not TimeSpanBuilder builder)
 		{
-			if (destinationType == typeof(TimeSpan))
-			{
-				return (TimeSpan)builder;
-			}
+			return base.ConvertTo(context, culture, value, destinationType);
+		}
+
+		if (destinationType == typeof(TimeSpan))
+		{
+			return (TimeSpan)builder;
+		}
 #if NET8_0_OR_GREATER
 
-			if (destinationType == typeof(TimeOnly))
-			{
-				return (TimeOnly)builder;
-			}
-#endif
+		if (destinationType == typeof(TimeOnly))
+		{
+			return (TimeOnly)builder;
 		}
+#endif
 
 		return base.ConvertTo(context, culture, value, destinationType);
 	}
