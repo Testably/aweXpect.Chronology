@@ -142,6 +142,12 @@ DateTime earlier = 3.Hours().Before(25.December(2024));
 DateTime later = 3.Hours().After(25.December(2024));
 ```
 
+With a `DateTimeOffset`, the result keeps its offset:
+
+```csharp
+DateTimeOffset earlier = 3.Hours().Before(25.December(2024).At(12, 0).WithOffset(2.Hours())); // 09:00 +02:00
+```
+
 ### Add and subtract
 
 You can add a `TimeSpan` to a date or subtract one from it:

@@ -64,6 +64,14 @@ namespace aweXpect.Chronology
     }
     public static class DateTimeOffsetExtensions
     {
+        public static System.DateTimeOffset After(this System.TimeSpan timeDifference, System.DateTimeOffset dateTime) { }
+        public static System.DateTimeOffset After(this aweXpect.Chronology.TimeSpanBuilder timeDifference, System.DateTimeOffset dateTime) { }
+        public static aweXpect.Chronology.DateTimeOffsetBuilder After(this System.TimeSpan timeDifference, aweXpect.Chronology.DateTimeOffsetBuilder dateTime) { }
+        public static aweXpect.Chronology.DateTimeOffsetBuilder After(this aweXpect.Chronology.TimeSpanBuilder timeDifference, aweXpect.Chronology.DateTimeOffsetBuilder dateTime) { }
+        public static System.DateTimeOffset Before(this System.TimeSpan timeDifference, System.DateTimeOffset dateTime) { }
+        public static System.DateTimeOffset Before(this aweXpect.Chronology.TimeSpanBuilder timeDifference, System.DateTimeOffset dateTime) { }
+        public static aweXpect.Chronology.DateTimeOffsetBuilder Before(this System.TimeSpan timeDifference, aweXpect.Chronology.DateTimeOffsetBuilder dateTime) { }
+        public static aweXpect.Chronology.DateTimeOffsetBuilder Before(this aweXpect.Chronology.TimeSpanBuilder timeDifference, aweXpect.Chronology.DateTimeOffsetBuilder dateTime) { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder WithOffset(this System.DateTime dateTime, System.TimeSpan offset) { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder WithOffset(this aweXpect.Chronology.DateBuilder dateTime, System.TimeSpan offset) { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder WithOffset(this aweXpect.Chronology.DateTimeBuilder dateTime, System.TimeSpan offset) { }

@@ -1,6 +1,6 @@
 ﻿namespace aweXpect.Chronology.Tests;
 
-public sealed class DateTimeOffsetExtensions
+public sealed partial class DateTimeOffsetExtensions
 {
 	public sealed class WithOffsetTests
 	{
