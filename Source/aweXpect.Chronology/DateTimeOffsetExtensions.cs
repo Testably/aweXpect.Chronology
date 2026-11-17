@@ -6,7 +6,7 @@ namespace aweXpect.Chronology;
 ///     Extension methods for creating <see cref="DateTimeOffset" />.
 /// </summary>
 /// <example>
-///     Instead of <c>new DateTime(2024, 24, 12, 14, 30, 0, TimeSpan.FromHours(2))</c><br />
+///     Instead of <c>new DateTimeOffset(2024, 12, 24, 14, 30, 0, TimeSpan.FromHours(2))</c><br />
 ///     you can write <c>24.December(2024).At(14, 30).WithOffset(2.Hours())</c>.
 /// </example>
 public static class DateTimeOffsetExtensions
