@@ -16,6 +16,7 @@ namespace aweXpect.Chronology;
 #endif
 [TypeConverter(typeof(DateTimeOffsetBuilderConverter))]
 public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
+	: IEquatable<DateTimeOffsetBuilder>, IComparable<DateTimeOffsetBuilder>
 {
 	private readonly DateTimeOffset _value = value;
 
@@ -34,6 +35,75 @@ public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
 	/// <inheritdoc cref="DateTimeOffset.ToString()" />
 	public override string ToString()
 		=> _value.ToString();
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="other" /> builder represents the same point in time.
+	/// </summary>
+	/// <remarks>
+	///     Like <see cref="DateTimeOffset.Equals(DateTimeOffset)" />, the offset is ignored, so
+	///     <c>12:00 +02:00</c> equals <c>10:00 +00:00</c>.
+	/// </remarks>
+	public bool Equals(DateTimeOffsetBuilder other)
+		=> _value.Equals(other._value);
+
+	/// <summary>
+	///     Returns <see langword="true" /> if <paramref name="obj" /> is a <see cref="DateTimeOffsetBuilder" /> that
+	///     represents the same point in time.
+	/// </summary>
+	public override bool Equals(object? obj)
+		=> obj is DateTimeOffsetBuilder other && Equals(other);
+
+	/// <summary>
+	///     Returns the hash code of the <see cref="DateTimeOffset" />.
+	/// </summary>
+	public override int GetHashCode()
+		=> _value.GetHashCode();
+
+	/// <summary>
+	///     Compares the point in time with the one of the <paramref name="other" /> builder.
+	/// </summary>
+	public int CompareTo(DateTimeOffsetBuilder other)
+		=> _value.CompareTo(other._value);
+
+	/// <summary>
+	///     Returns <see langword="true" /> if both builders represent the same point in time.
+	/// </summary>
+	public static bool operator ==(DateTimeOffsetBuilder left, DateTimeOffsetBuilder right)
+		=> left._value == right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the builders represent different points in time.
+	/// </summary>
+	public static bool operator !=(DateTimeOffsetBuilder left, DateTimeOffsetBuilder right)
+		=> left._value != right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> point in time is earlier than the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator <(DateTimeOffsetBuilder left, DateTimeOffsetBuilder right)
+		=> left._value < right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> point in time is later than the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator >(DateTimeOffsetBuilder left, DateTimeOffsetBuilder right)
+		=> left._value > right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> point in time is earlier than or equal to the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator <=(DateTimeOffsetBuilder left, DateTimeOffsetBuilder right)
+		=> left._value <= right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> point in time is later than or equal to the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator >=(DateTimeOffsetBuilder left, DateTimeOffsetBuilder right)
+		=> left._value >= right._value;
 
 #if NET8_0_OR_GREATER
 	/// <summary>

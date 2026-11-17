@@ -16,6 +16,7 @@ namespace aweXpect.Chronology;
 #endif
 [TypeConverter(typeof(DateBuilderConverter))]
 public readonly struct DateBuilder(DateTime value)
+	: IEquatable<DateBuilder>, IComparable<DateBuilder>
 {
 	private readonly DateTime _value = value;
 
@@ -28,6 +29,74 @@ public readonly struct DateBuilder(DateTime value)
 	/// <inheritdoc cref="DateTime.ToString()" />
 	public override string ToString()
 		=> _value.ToString();
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="other" /> builder has the same <see cref="DateTime" />.
+	/// </summary>
+	/// <remarks>
+	///     Like <see cref="DateTime.Equals(DateTime)" />, the <see cref="DateTime.Kind" /> is ignored.
+	/// </remarks>
+	public bool Equals(DateBuilder other)
+		=> _value.Equals(other._value);
+
+	/// <summary>
+	///     Returns <see langword="true" /> if <paramref name="obj" /> is a <see cref="DateBuilder" /> with the same
+	///     <see cref="DateTime" />.
+	/// </summary>
+	public override bool Equals(object? obj)
+		=> obj is DateBuilder other && Equals(other);
+
+	/// <summary>
+	///     Returns the hash code of the <see cref="DateTime" />.
+	/// </summary>
+	public override int GetHashCode()
+		=> _value.GetHashCode();
+
+	/// <summary>
+	///     Compares the <see cref="DateTime" /> with the one of the <paramref name="other" /> builder.
+	/// </summary>
+	public int CompareTo(DateBuilder other)
+		=> _value.CompareTo(other._value);
+
+	/// <summary>
+	///     Returns <see langword="true" /> if both builders have the same <see cref="DateTime" />.
+	/// </summary>
+	public static bool operator ==(DateBuilder left, DateBuilder right)
+		=> left._value == right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the builders have different <see cref="DateTime" />s.
+	/// </summary>
+	public static bool operator !=(DateBuilder left, DateBuilder right)
+		=> left._value != right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="DateTime" /> is earlier than the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator <(DateBuilder left, DateBuilder right)
+		=> left._value < right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="DateTime" /> is later than the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator >(DateBuilder left, DateBuilder right)
+		=> left._value > right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="DateTime" /> is earlier than or equal
+	///     to the <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator <=(DateBuilder left, DateBuilder right)
+		=> left._value <= right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="DateTime" /> is later than or equal
+	///     to the <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator >=(DateBuilder left, DateBuilder right)
+		=> left._value >= right._value;
 
 #if NET8_0_OR_GREATER
 	/// <summary>

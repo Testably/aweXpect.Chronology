@@ -61,6 +61,7 @@ The methods return lightweight builders that convert implicitly to the .NET type
 | [Kind](#kind)                                   | `AsUtc`, `AsLocal`, `ToLocalTime`, `ToUniversalTime`            | `24.December(2024).At(18, 30).AsUtc()`    |
 | [Relative dates](#relative-dates)               | `Before`, `After`                                               | `3.Hours().Before(25.December(2024))`     |
 | [Add and subtract](#add-and-subtract)           | `+`, `-` with a `TimeSpan`                                      | `24.December(2024) + 18.Hours()`          |
+| [Compare dates](#compare-dates)                 | `==`, `!=`, `<`, `<=`, `>`, `>=`                                | `24.December(2024) < 25.December(2024)`   |
 | [DateTimeOffset](#datetimeoffset)               | `WithOffset(TimeSpan)`                                          | `24.December(2024).WithOffset(2.Hours())` |
 | [DateOnly and TimeOnly](#dateonly-and-timeonly) | implicit conversions                                            | `DateOnly date = 24.December(2024);`      |
 
@@ -177,6 +178,14 @@ DateTime evening = 24.December(2024) + 18.Hours();
 DateTime dayBefore = 24.December(2024) - 1.Days();
 ```
 
+### Compare dates
+
+Two dates, or two dates with a time of day, can be compared with `==`, `!=`, `<`, `<=`, `>` and `>=`. Like `DateTime`, the comparison ignores the kind:
+
+```csharp
+bool isEarlier = 24.December(2024) < 25.December(2024); // true
+```
+
 
 ## DateTimeOffset
 
@@ -189,7 +198,7 @@ DateTimeOffset time = 24.December(2024).At(14, 30).WithOffset(2.Hours());
 
 **Caution:** For a `DateTime` with the kind `Utc` or `Local`, the offset has to match: `24.December(2024).At(14, 30).AsUtc().WithOffset(2.Hours())` throws an `ArgumentException`. Use an `Unspecified` value, as in the examples above, or the matching offset.
 
-The result also supports `+` and `-` with a `TimeSpan`. When you assign it to a `DateTime`, it keeps the clock time and drops the offset.
+The result also supports `+` and `-` with a `TimeSpan`, and `==`, `!=`, `<`, `<=`, `>` and `>=` with another result. Like `DateTimeOffset`, the comparison uses the point in time, so `24.December(2024).At(14, 30).WithOffset(2.Hours()) == 24.December(2024).At(12, 30).WithOffset(0.Hours())` is `true`. When you assign it to a `DateTime`, it keeps the clock time and drops the offset.
 
 
 ## DateOnly and TimeOnly
