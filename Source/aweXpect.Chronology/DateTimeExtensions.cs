@@ -6,7 +6,7 @@ namespace aweXpect.Chronology;
 ///     Extension methods for creating <see cref="DateTime" />.
 /// </summary>
 /// <example>
-///     Instead of <c>new DateTime(2024, 24, 12)</c><br />
+///     Instead of <c>new DateTime(2024, 12, 24)</c><br />
 ///     you can write <c>24.December(2024)</c>.
 /// </example>
 public static class DateTimeExtensions

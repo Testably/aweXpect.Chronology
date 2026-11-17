@@ -17,13 +17,13 @@ public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
 	private readonly DateTimeOffset _value = value;
 
 	/// <summary>
-	///     Implicitly casts the <see cref="DateTimeBuilder" /> to a <see cref="DateTime" />.
+	///     Implicitly casts the <see cref="DateTimeOffsetBuilder" /> to a <see cref="DateTime" />.
 	/// </summary>
 	public static implicit operator DateTime(DateTimeOffsetBuilder builder)
 		=> builder._value.DateTime;
 
 	/// <summary>
-	///     Implicitly casts the <see cref="DateTimeBuilder" /> to a <see cref="DateTimeOffset" />.
+	///     Implicitly casts the <see cref="DateTimeOffsetBuilder" /> to a <see cref="DateTimeOffset" />.
 	/// </summary>
 	public static implicit operator DateTimeOffset(DateTimeOffsetBuilder builder)
 		=> builder._value;
@@ -34,7 +34,7 @@ public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
 
 #if NET8_0_OR_GREATER
 	/// <summary>
-	///     Implicitly casts the <see cref="DateTimeBuilder" /> to a <see cref="DateOnly" />.
+	///     Implicitly casts the <see cref="DateTimeOffsetBuilder" /> to a <see cref="DateOnly" />.
 	/// </summary>
 	public static implicit operator DateOnly(DateTimeOffsetBuilder builder)
 		=> DateOnly.FromDateTime(builder._value.DateTime);
@@ -42,20 +42,20 @@ public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
 
 #if NET8_0_OR_GREATER
 	/// <summary>
-	///     Implicitly casts the <see cref="DateTimeBuilder" /> to a <see cref="TimeOnly" />.
+	///     Implicitly casts the <see cref="DateTimeOffsetBuilder" /> to a <see cref="TimeOnly" />.
 	/// </summary>
 	public static implicit operator TimeOnly(DateTimeOffsetBuilder builder)
 		=> TimeOnly.FromDateTime(builder._value.DateTime);
 #endif
 
 	/// <summary>
-	///     Adds a <see cref="TimeSpan" /> to the <see cref="DateTime" />.
+	///     Adds a <see cref="TimeSpan" /> to the <see cref="DateTimeOffset" />.
 	/// </summary>
 	public static DateTimeOffsetBuilder operator +(DateTimeOffsetBuilder builder, TimeSpan time)
 		=> new(builder._value + time);
 
 	/// <summary>
-	///     Subtracts a <see cref="TimeSpan" /> from the <see cref="DateTime" />.
+	///     Subtracts a <see cref="TimeSpan" /> from the <see cref="DateTimeOffset" />.
 	/// </summary>
 	public static DateTimeOffsetBuilder operator -(DateTimeOffsetBuilder builder, TimeSpan time)
 		=> new(builder._value - time);
