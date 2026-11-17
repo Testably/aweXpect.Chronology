@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using aweXpect.Core;
-using aweXpect.Results;
 using aweXpect.Snapshots;
-using aweXpect.Snapshots.PublicApi;
-using TUnit.Core;
+using aweXpect.Snapshots.Results;
 // ReSharper disable ExplicitCallerInfoArgument
 
 namespace aweXpect.Chronology.Api.Tests;
@@ -53,7 +51,7 @@ public sealed class ApiApprovalTests
 	/// <summary>
 	///     The snapshot is named after the assembly and the target framework, so that both tests use the same one.
 	/// </summary>
-	private static SnapshotResult<string?, IThat<string?>> MatchesPublicApiSnapshot(string assemblyName,
+	private static StringSnapshotResult<string?, IThat<string?>> MatchesPublicApiSnapshot(string assemblyName,
 		string framework)
 		=> Expect.That(Helper.GetAssemblyFile(framework, assemblyName))
 			.MatchesPublicApiSnapshot(callerMemberName: assemblyName).Named(framework);
