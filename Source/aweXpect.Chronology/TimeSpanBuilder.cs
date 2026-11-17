@@ -12,6 +12,7 @@ namespace aweXpect.Chronology;
 /// </summary>
 #endif
 public readonly struct TimeSpanBuilder(TimeSpan value)
+	: IEquatable<TimeSpanBuilder>, IComparable<TimeSpanBuilder>
 {
 	private readonly TimeSpan _value = value;
 
@@ -24,6 +25,71 @@ public readonly struct TimeSpanBuilder(TimeSpan value)
 	/// <inheritdoc cref="TimeSpan.ToString()" />
 	public override string ToString()
 		=> _value.ToString();
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="other" /> builder has the same <see cref="TimeSpan" />.
+	/// </summary>
+	public bool Equals(TimeSpanBuilder other)
+		=> _value.Equals(other._value);
+
+	/// <summary>
+	///     Returns <see langword="true" /> if <paramref name="obj" /> is a <see cref="TimeSpanBuilder" /> with the same
+	///     <see cref="TimeSpan" />.
+	/// </summary>
+	public override bool Equals(object? obj)
+		=> obj is TimeSpanBuilder other && Equals(other);
+
+	/// <summary>
+	///     Returns the hash code of the <see cref="TimeSpan" />.
+	/// </summary>
+	public override int GetHashCode()
+		=> _value.GetHashCode();
+
+	/// <summary>
+	///     Compares the <see cref="TimeSpan" /> with the one of the <paramref name="other" /> builder.
+	/// </summary>
+	public int CompareTo(TimeSpanBuilder other)
+		=> _value.CompareTo(other._value);
+
+	/// <summary>
+	///     Returns <see langword="true" /> if both builders have the same <see cref="TimeSpan" />.
+	/// </summary>
+	public static bool operator ==(TimeSpanBuilder left, TimeSpanBuilder right)
+		=> left._value == right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the builders have different <see cref="TimeSpan" />s.
+	/// </summary>
+	public static bool operator !=(TimeSpanBuilder left, TimeSpanBuilder right)
+		=> left._value != right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="TimeSpan" /> is shorter than the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator <(TimeSpanBuilder left, TimeSpanBuilder right)
+		=> left._value < right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="TimeSpan" /> is longer than the
+	///     <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator >(TimeSpanBuilder left, TimeSpanBuilder right)
+		=> left._value > right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="TimeSpan" /> is shorter than or equal
+	///     to the <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator <=(TimeSpanBuilder left, TimeSpanBuilder right)
+		=> left._value <= right._value;
+
+	/// <summary>
+	///     Returns <see langword="true" /> if the <paramref name="left" /> <see cref="TimeSpan" /> is longer than or equal
+	///     to the <paramref name="right" /> one.
+	/// </summary>
+	public static bool operator >=(TimeSpanBuilder left, TimeSpanBuilder right)
+		=> left._value >= right._value;
 
 	/// <summary>
 	///     Returns a new <see cref="TimeSpanBuilder" /> whose value is the negated value of this <paramref name="instance" />.
