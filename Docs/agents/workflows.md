@@ -18,15 +18,15 @@ dotnet test --project Tests/aweXpect.Chronology.Api.Tests
 
 ## Public API Snapshots
 
-`Tests/aweXpect.Chronology.Api.Tests` (TUnit, `net10.0`) compares the public API of each library build (`netstandard2.0`, `net8.0`, `net10.0`, read from `Source/Directory.Build.props`) with `ApiApprovalTests.aweXpect%2EChronology.<framework>.awexpect-snapshot.txt`, using `aweXpect.Snapshots.PublicApi`. The project builds all target frameworks of the library after its own build and reads them from `Source/aweXpect.Chronology/bin/<Configuration>/<framework>/`, so it must be built in the same configuration it runs in.
+`Tests/aweXpect.Chronology.Api.Tests` (TUnit, `net10.0`) compares the public API of each library build (`netstandard2.0`, `net8.0`, `net10.0`, read from `Source/Directory.Build.props`) with `ApiApprovalTests/aweXpect.Chronology/<framework>.awexpect-snapshot.cs`, using `aweXpect.Snapshots.PublicApi`. The project builds all target frameworks of the library after its own build and reads them from `Source/aweXpect.Chronology/bin/<Configuration>/<framework>/`, so it must be built in the same configuration it runs in.
 
 When a public API change is intended, accept it in one of these ways and commit the updated snapshot files:
 
 - Run the explicit test, which a run without this filter skips: `dotnet test --project Tests/aweXpect.Chronology.Api.Tests --treenode-filter "/*/*/ApiApprovalTests/AcceptApiChanges"`.
 - Run the tests with `AWEXPECT_ACCEPT_SNAPSHOTS=all` (PowerShell: `$env:AWEXPECT_ACCEPT_SNAPSHOTS = 'all'`).
-- Rename the `*.awexpect-snapshot.pending` file that a failing test writes next to the snapshot.
+- Rename the `*.awexpect-snapshot.pending.cs` file that a failing test writes next to the snapshot.
 
-Never commit `*.awexpect-snapshot.pending` files.
+Never commit `*.awexpect-snapshot.pending.cs` files.
 
 ## Build Pipeline
 
