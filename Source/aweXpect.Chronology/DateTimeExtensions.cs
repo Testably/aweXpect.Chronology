@@ -100,7 +100,7 @@ public static class DateTimeExtensions
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and <paramref name="time" />.
 	/// </summary>
 	public static DateTimeBuilder At(this DateBuilder date, TimeSpan time)
-		=> date.Add(time);
+		=> new(((DateTime)date).Date + time);
 
 	/// <summary>
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and time
