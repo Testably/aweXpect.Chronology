@@ -35,6 +35,67 @@ public sealed partial class DateTimeExtensions
 		}
 
 		[Test]
+		public async Task FromBuilder_WithLastMillisecondOfDay_ShouldSetTime()
+		{
+			DateTime expected = new(2024, 12, 24, 23, 59, 59, 999, DateTimeKind.Unspecified);
+
+			DateTime result = 24.December(2024).At(23, 59, 59, 999);
+
+			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		public async Task FromBuilder_WithTimeOfDay_ShouldReplaceTime()
+		{
+			DateTime expected = new(2024, 12, 24, 6, 0, 0);
+			DateBuilder date = 24.December(2024) + 18.Hours();
+
+			DateTime result = date.At(6, 0);
+
+			await That(result).IsEqualTo(expected)
+				.Because("At sets the time of day like the DateTime overload instead of adding to the time");
+		}
+
+		[Test]
+		public async Task FromBuilder_WithHourAndMinutes_ShouldKeepKind()
+		{
+			DateBuilder date = new(new DateTime(2024, 12, 24, 0, 0, 0, DateTimeKind.Utc));
+
+			DateTime result = date.At(18, 30);
+
+			await That(result.Kind).IsEqualTo(DateTimeKind.Utc);
+		}
+
+		[Test]
+		[Arguments(24, 0, 0)]
+		[Arguments(-1, 0, 0)]
+		[Arguments(18, 60, 0)]
+		[Arguments(18, -1, 0)]
+		[Arguments(18, 30, 60)]
+		[Arguments(18, 30, -1)]
+		public async Task FromBuilder_WhenHourMinuteOrSecondIsOutOfRange_ShouldThrowArgumentOutOfRangeException(
+			int hours, int minutes, int seconds)
+		{
+			void Act() => _ = 24.December(2024).At(hours, minutes, seconds);
+
+			await That(Act).ThrowsExactly<ArgumentOutOfRangeException>()
+				.Because("the components must not roll over into the next minute, hour or day");
+		}
+
+		[Test]
+		[Arguments(1000)]
+		[Arguments(-1)]
+		public async Task FromBuilder_WhenMillisecondIsOutOfRange_ShouldThrowArgumentOutOfRangeException(
+			int milliseconds)
+		{
+			void Act() => _ = 24.December(2024).At(18, 30, 0, milliseconds);
+
+			await That(Act).ThrowsExactly<ArgumentOutOfRangeException>()
+				.WithParamName("millisecond")
+				.Because("the millisecond must not roll over into the next second");
+		}
+
+		[Test]
 		public async Task FromBuilder_WithTimeSpan_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 15);
