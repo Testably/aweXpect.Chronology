@@ -86,10 +86,11 @@ TimeSpan period = 2.Days(12.Hours());       // 2.12:00:00
 
 ### Arithmetic
 
-The result supports the operators `+`, `-`, `*` (by `double`), `/` (by `double`) and unary negation:
+The result supports the operators `+`, `-`, `*` (by `double`, in either order), `/` (by `double`) and unary negation:
 
 ```csharp
 TimeSpan doubled = 5.Minutes() * 2;
+TimeSpan tripled = 3 * 5.Minutes();
 TimeSpan half = 5.Minutes() / 2;
 TimeSpan combined = 1.Minutes() + 30.Seconds();
 TimeSpan negative = -10.Seconds();
