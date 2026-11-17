@@ -21,6 +21,10 @@ public readonly struct TimeSpanBuilder(TimeSpan value)
 	public static implicit operator TimeSpan(TimeSpanBuilder builder)
 		=> builder._value;
 
+	/// <inheritdoc cref="TimeSpan.ToString()" />
+	public override string ToString()
+		=> _value.ToString();
+
 	/// <summary>
 	///     Returns a new <see cref="TimeSpanBuilder" /> whose value is the negated value of this <paramref name="instance" />.
 	/// </summary>

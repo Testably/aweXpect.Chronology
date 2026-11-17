@@ -60,4 +60,16 @@ public sealed class DateTimeBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 #endif
+
+	[Test]
+	public async Task ToString_ShouldReturnDateTimeString()
+	{
+		DateTime value = new(2024, 03, 23, 12, 13, 14);
+		DateTimeBuilder builder = 23.March(2024).At(12, 13, 14);
+
+		string result = $"{builder}";
+
+		await That(result).IsEqualTo(value.ToString())
+			.Because("string interpolation should print the value instead of the type name");
+	}
 }

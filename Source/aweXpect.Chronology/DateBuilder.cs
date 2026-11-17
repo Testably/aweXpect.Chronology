@@ -22,6 +22,10 @@ public readonly struct DateBuilder(DateTime value)
 	public static implicit operator DateTime(DateBuilder builder)
 		=> builder._value;
 
+	/// <inheritdoc cref="DateTime.ToString()" />
+	public override string ToString()
+		=> _value.ToString();
+
 #if NET8_0_OR_GREATER
 	/// <summary>
 	///     Implicitly casts the <see cref="DateBuilder" /> to a <see cref="DateOnly" />.
