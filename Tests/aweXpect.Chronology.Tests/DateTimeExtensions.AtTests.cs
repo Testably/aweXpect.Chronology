@@ -120,6 +120,31 @@ public sealed partial class DateTimeExtensions
 		}
 
 		[Test]
+		[Arguments(0L)]
+		[Arguments(TimeSpan.TicksPerDay - 1)]
+		public async Task FromBuilder_WithTimeSpanWithinOneDay_ShouldSetTime(long ticks)
+		{
+			DateTime expected = new DateTime(2024, 12, 24).AddTicks(ticks);
+
+			DateTime result = 24.December(2024).At(TimeSpan.FromTicks(ticks));
+
+			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		[Arguments(-1L)]
+		[Arguments(TimeSpan.TicksPerDay)]
+		public async Task FromBuilder_WhenTimeSpanIsOutOfRange_ShouldThrowArgumentOutOfRangeException(long ticks)
+		{
+			void Act() => _ = 24.December(2024).At(TimeSpan.FromTicks(ticks));
+
+			await That(Act).ThrowsExactly<ArgumentOutOfRangeException>()
+				.WithParamName("time").And
+				.WithMessage("The time of day must not be negative and must be less than one day.*").AsWildcard()
+				.Because("the time of day must not roll over into the previous or next day");
+		}
+
+		[Test]
 		public async Task FromDateTime_WithHourAndMinutes_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 00);
@@ -186,6 +211,34 @@ public sealed partial class DateTimeExtensions
 			await That(result).IsEqualTo(expected);
 		}
 
+		[Test]
+		[Arguments(0L)]
+		[Arguments(TimeSpan.TicksPerDay - 1)]
+		public async Task FromDateTime_WithTimeSpanWithinOneDay_ShouldSetTime(long ticks)
+		{
+			DateTime expected = new DateTime(2024, 12, 24).AddTicks(ticks);
+			DateTime date = new(2024, 12, 24, 10, 45, 20);
+
+			DateTime result = date.At(TimeSpan.FromTicks(ticks));
+
+			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		[Arguments(-1L)]
+		[Arguments(TimeSpan.TicksPerDay)]
+		public async Task FromDateTime_WhenTimeSpanIsOutOfRange_ShouldThrowArgumentOutOfRangeException(long ticks)
+		{
+			DateTime date = new(2024, 12, 24, 10, 45, 20);
+
+			void Act() => _ = date.At(TimeSpan.FromTicks(ticks));
+
+			await That(Act).ThrowsExactly<ArgumentOutOfRangeException>()
+				.WithParamName("time").And
+				.WithMessage("The time of day must not be negative and must be less than one day.*").AsWildcard()
+				.Because("the time of day must not roll over into the previous or next day");
+		}
+
 #if NET8_0_OR_GREATER
 		[Test]
 		public async Task FromDateOnly_WithTimeSpan_ShouldAddTime()
@@ -229,6 +282,34 @@ public sealed partial class DateTimeExtensions
 			DateTime result = date.At(18, 30, 0, 150);
 
 			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		[Arguments(0L)]
+		[Arguments(TimeSpan.TicksPerDay - 1)]
+		public async Task FromDateOnly_WithTimeSpanWithinOneDay_ShouldSetTime(long ticks)
+		{
+			DateTime expected = new DateTime(2024, 12, 24).AddTicks(ticks);
+			DateOnly date = 24.December(2024);
+
+			DateTime result = date.At(TimeSpan.FromTicks(ticks));
+
+			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		[Arguments(-1L)]
+		[Arguments(TimeSpan.TicksPerDay)]
+		public async Task FromDateOnly_WhenTimeSpanIsOutOfRange_ShouldThrowArgumentOutOfRangeException(long ticks)
+		{
+			DateOnly date = 24.December(2024);
+
+			void Act() => _ = date.At(TimeSpan.FromTicks(ticks));
+
+			await That(Act).ThrowsExactly<ArgumentOutOfRangeException>()
+				.WithParamName("time").And
+				.WithMessage("The time of day must not be negative and must be less than one day.*").AsWildcard()
+				.Because("the time of day must not roll over into the previous or next day");
 		}
 #endif
 	}

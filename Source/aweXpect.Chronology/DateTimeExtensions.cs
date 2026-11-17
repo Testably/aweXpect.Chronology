@@ -100,7 +100,7 @@ public static class DateTimeExtensions
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and <paramref name="time" />.
 	/// </summary>
 	public static DateTimeBuilder At(this DateBuilder date, TimeSpan time)
-		=> new(((DateTime)date).Date + time);
+		=> new(((DateTime)date).Date + ThrowIfNotTimeOfDay(time));
 
 	/// <summary>
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and time
@@ -115,7 +115,7 @@ public static class DateTimeExtensions
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and <paramref name="time" />.
 	/// </summary>
 	public static DateTime At(this DateTime date, TimeSpan time)
-		=> date.Date + time;
+		=> date.Date + ThrowIfNotTimeOfDay(time);
 
 	/// <summary>
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and time
@@ -130,7 +130,7 @@ public static class DateTimeExtensions
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and <paramref name="time" />.
 	/// </summary>
 	public static DateTime At(this DateOnly date, TimeSpan time)
-		=> date.ToDateTime(TimeOnly.MinValue) + time;
+		=> date.ToDateTime(TimeOnly.MinValue) + ThrowIfNotTimeOfDay(time);
 #endif
 
 #if NET8_0_OR_GREATER
@@ -229,4 +229,10 @@ public static class DateTimeExtensions
 	/// </summary>
 	public static DateTime After(this TimeSpan timeDifference, DateTime dateTime)
 		=> dateTime + timeDifference;
+
+	private static TimeSpan ThrowIfNotTimeOfDay(TimeSpan time)
+		=> time < TimeSpan.Zero || time.Ticks >= TimeSpan.TicksPerDay
+			? throw new ArgumentOutOfRangeException(nameof(time), time,
+				"The time of day must not be negative and must be less than one day.")
+			: time;
 }
