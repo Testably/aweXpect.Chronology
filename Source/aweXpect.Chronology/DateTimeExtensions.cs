@@ -172,6 +172,31 @@ public static class DateTimeExtensions
 	public static DateTime AsLocal(this DateTime dateTime)
 		=> DateTime.SpecifyKind(dateTime, DateTimeKind.Local);
 
+	/// <summary>
+	///     Converts the given <paramref name="dateTime" /> to the local time zone, like
+	///     <see cref="DateTime.ToLocalTime()" />.
+	/// </summary>
+	/// <remarks>
+	///     Unlike <see cref="AsLocal(DateTimeBuilder)" />, which keeps the clock time and only sets the kind, this
+	///     changes the clock time, so the result depends on the time zone of the machine. A value with the kind
+	///     <see cref="DateTimeKind.Unspecified" /> is treated as UTC, so set the kind with
+	///     <see cref="AsUtc(DateTimeBuilder)" /> first.
+	/// </remarks>
+	public static DateTimeBuilder ToLocalTime(this DateTimeBuilder dateTime)
+		=> new(((DateTime)dateTime).ToLocalTime());
+
+	/// <summary>
+	///     Converts the given <paramref name="dateTime" /> to UTC, like <see cref="DateTime.ToUniversalTime()" />.
+	/// </summary>
+	/// <remarks>
+	///     Unlike <see cref="AsUtc(DateTimeBuilder)" />, which keeps the clock time and only sets the kind, this
+	///     changes the clock time, so the result depends on the time zone of the machine. A value with the kind
+	///     <see cref="DateTimeKind.Unspecified" /> is treated as local time, so set the kind with
+	///     <see cref="AsLocal(DateTimeBuilder)" /> first.
+	/// </remarks>
+	public static DateTimeBuilder ToUniversalTime(this DateTimeBuilder dateTime)
+		=> new(((DateTime)dateTime).ToUniversalTime());
+
 
 	/// <summary>
 	///     Creates a <see cref="DateTime" /> that is the <paramref name="timeDifference" /> before the

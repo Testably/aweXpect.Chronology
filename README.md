@@ -58,7 +58,7 @@ The methods return lightweight builders that convert implicitly to the .NET type
 | [Comparison](#comparison)                       | `==`, `!=`, `<`, `<=`, `>`, `>=`                                | `5.Minutes() > 30.Seconds()`              |
 | [Dates](#dates)                                 | `January` … `December`                                          | `24.December(2024)`                       |
 | [Time of day](#time-of-day)                     | `At(hours, minutes, [seconds], [milliseconds])`, `At(TimeSpan)` | `24.December(2024).At(18, 30)`            |
-| [Kind](#kind)                                   | `AsUtc`, `AsLocal`                                              | `24.December(2024).At(18, 30).AsUtc()`    |
+| [Kind](#kind)                                   | `AsUtc`, `AsLocal`, `ToLocalTime`, `ToUniversalTime`            | `24.December(2024).At(18, 30).AsUtc()`    |
 | [Relative dates](#relative-dates)               | `Before`, `After`                                               | `3.Hours().Before(25.December(2024))`     |
 | [Add and subtract](#add-and-subtract)           | `+`, `-` with a `TimeSpan`                                      | `24.December(2024) + 18.Hours()`          |
 | [DateTimeOffset](#datetimeoffset)               | `WithOffset(TimeSpan)`                                          | `24.December(2024).WithOffset(2.Hours())` |
@@ -144,6 +144,14 @@ DateTime local = 24.December(2024).At(18, 30).AsLocal();
 ```
 
 A date without a time has no `AsUtc()` or `AsLocal()`. Add the time explicitly, e.g. `24.December(2024).At(0, 0).AsUtc()` for midnight UTC.
+
+`ToLocalTime()` and `ToUniversalTime()` convert a date with a time of day to the local time zone or to UTC, like the `DateTime` methods with the same name. Use them when the system under test converts the value the same way:
+
+```csharp
+DateTime expected = 1.January(1601).At(0, 0).AsUtc().ToLocalTime();
+```
+
+**Caution:** `AsUtc()` and `AsLocal()` keep the clock time and only set the kind, while `ToLocalTime()` and `ToUniversalTime()` change the clock time, so the result depends on the time zone of the machine. Set the kind first: like `DateTime`, `ToLocalTime()` treats an `Unspecified` value as UTC and `ToUniversalTime()` treats it as local time.
 
 ### Relative dates
 
