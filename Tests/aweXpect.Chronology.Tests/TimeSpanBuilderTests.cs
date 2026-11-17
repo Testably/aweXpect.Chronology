@@ -196,4 +196,163 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo("1.02:30:00")
 			.Because("string interpolation should print the value instead of the type name");
 	}
+
+	[Test]
+	[Arguments(60, 60, true)]
+	[Arguments(60, 61, false)]
+	public async Task Equals_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds, bool expected)
+	{
+		TimeSpanBuilder left = leftSeconds.Seconds();
+		TimeSpanBuilder right = rightSeconds.Seconds();
+
+		bool result = left.Equals(right);
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	public async Task Equals_WithObject_WhenBuilderHasSameTimeSpan_ShouldReturnTrue()
+	{
+		TimeSpanBuilder builder = 1.Minutes();
+		object other = 60.Seconds();
+
+		bool result = builder.Equals(other);
+
+		await That(result).IsTrue();
+	}
+
+	[Test]
+	public async Task Equals_WithObject_WhenBuilderHasDifferentTimeSpan_ShouldReturnFalse()
+	{
+		TimeSpanBuilder builder = 1.Minutes();
+		object other = 61.Seconds();
+
+		bool result = builder.Equals(other);
+
+		await That(result).IsFalse();
+	}
+
+	[Test]
+	public async Task Equals_WithObject_WhenTimeSpan_ShouldReturnFalse()
+	{
+		TimeSpanBuilder builder = 1.Minutes();
+		object other = TimeSpan.FromMinutes(1);
+
+		bool result = builder.Equals(other);
+
+		await That(result).IsFalse()
+			.Because("TimeSpan.Equals(builder) is false, so the equality must not be one-sided");
+	}
+
+	[Test]
+	public async Task Equals_WithObject_WhenNull_ShouldReturnFalse()
+	{
+		TimeSpanBuilder builder = 1.Minutes();
+
+		bool result = builder.Equals(null);
+
+		await That(result).IsFalse();
+	}
+
+	[Test]
+	public async Task GetHashCode_ShouldBeEqualForEqualTimeSpans()
+	{
+		TimeSpanBuilder builder = 1.Minutes();
+
+		int result = 60.Seconds().GetHashCode();
+
+		await That(result).IsEqualTo(builder.GetHashCode());
+	}
+
+	[Test]
+	public async Task GetHashCode_ShouldUseTimeSpanHashCode()
+	{
+		TimeSpanBuilder builder = 1.Minutes();
+
+		int result = builder.GetHashCode();
+
+		await That(result).IsEqualTo(TimeSpan.FromMinutes(1).GetHashCode());
+	}
+
+	[Test]
+	[Arguments(59, 60, -1)]
+	[Arguments(60, 60, 0)]
+	[Arguments(61, 60, 1)]
+	public async Task CompareTo_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds, int expected)
+	{
+		TimeSpanBuilder left = leftSeconds.Seconds();
+		TimeSpanBuilder right = rightSeconds.Seconds();
+
+		int result = left.CompareTo(right);
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	[Arguments(59, 60, false)]
+	[Arguments(60, 60, true)]
+	[Arguments(61, 60, false)]
+	public async Task EqualityOperator_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds, bool expected)
+	{
+		bool result = leftSeconds.Seconds() == rightSeconds.Seconds();
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	[Arguments(59, 60, true)]
+	[Arguments(60, 60, false)]
+	[Arguments(61, 60, true)]
+	public async Task InequalityOperator_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds, bool expected)
+	{
+		bool result = leftSeconds.Seconds() != rightSeconds.Seconds();
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	[Arguments(59, 60, true)]
+	[Arguments(60, 60, false)]
+	[Arguments(61, 60, false)]
+	public async Task LessThanOperator_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds, bool expected)
+	{
+		bool result = leftSeconds.Seconds() < rightSeconds.Seconds();
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	[Arguments(59, 60, false)]
+	[Arguments(60, 60, false)]
+	[Arguments(61, 60, true)]
+	public async Task GreaterThanOperator_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds, bool expected)
+	{
+		bool result = leftSeconds.Seconds() > rightSeconds.Seconds();
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	[Arguments(59, 60, true)]
+	[Arguments(60, 60, true)]
+	[Arguments(61, 60, false)]
+	public async Task LessThanOrEqualOperator_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds,
+		bool expected)
+	{
+		bool result = leftSeconds.Seconds() <= rightSeconds.Seconds();
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	[Arguments(59, 60, false)]
+	[Arguments(60, 60, true)]
+	[Arguments(61, 60, true)]
+	public async Task GreaterThanOrEqualOperator_ShouldCompareTimeSpans(int leftSeconds, int rightSeconds,
+		bool expected)
+	{
+		bool result = leftSeconds.Seconds() >= rightSeconds.Seconds();
+
+		await That(result).IsEqualTo(expected);
+	}
 }

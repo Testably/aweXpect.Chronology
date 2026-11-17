@@ -55,6 +55,7 @@ The methods return lightweight builders that convert implicitly to the .NET type
 | [Units](#units)                                 | `Milliseconds`, `Seconds`, `Minutes`, `Hours`, `Days`           | `5.Minutes()`                             |
 | [Combine values](#combine-values)               | the same methods with a `TimeSpan` argument                     | `1.Minutes(30.Seconds())`                 |
 | [Arithmetic](#arithmetic)                       | `+`, `-`, `*` (by `double`), `/` (by `double`), unary `-`       | `5.Minutes() * 2`                         |
+| [Comparison](#comparison)                       | `==`, `!=`, `<`, `<=`, `>`, `>=`                                | `5.Minutes() > 30.Seconds()`              |
 | [Dates](#dates)                                 | `January` … `December`                                          | `24.December(2024)`                       |
 | [Time of day](#time-of-day)                     | `At(hours, minutes, [seconds], [milliseconds])`, `At(TimeSpan)` | `24.December(2024).At(18, 30)`            |
 | [Kind](#kind)                                   | `AsUtc`, `AsLocal`                                              | `24.December(2024).At(18, 30).AsUtc()`    |
@@ -94,6 +95,14 @@ TimeSpan tripled = 3 * 5.Minutes();
 TimeSpan half = 5.Minutes() / 2;
 TimeSpan combined = 1.Minutes() + 30.Seconds();
 TimeSpan negative = -10.Seconds();
+```
+
+### Comparison
+
+Two durations can be compared with `==`, `!=`, `<`, `<=`, `>` and `>=`:
+
+```csharp
+bool isLonger = 5.Minutes() > 30.Seconds(); // true
 ```
 
 
