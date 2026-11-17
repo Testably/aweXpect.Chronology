@@ -104,6 +104,10 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.TimeSpanBuilder Hours(this double hours, System.TimeSpan offset) { }
         public static aweXpect.Chronology.TimeSpanBuilder Hours(this int hours) { }
         public static aweXpect.Chronology.TimeSpanBuilder Hours(this int hours, System.TimeSpan offset) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Microseconds(this double microseconds) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Microseconds(this double microseconds, System.TimeSpan offset) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Microseconds(this int microseconds) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Microseconds(this int microseconds, System.TimeSpan offset) { }
         public static aweXpect.Chronology.TimeSpanBuilder Milliseconds(this double milliseconds) { }
         public static aweXpect.Chronology.TimeSpanBuilder Milliseconds(this double milliseconds, System.TimeSpan offset) { }
         public static aweXpect.Chronology.TimeSpanBuilder Milliseconds(this int milliseconds) { }
@@ -116,6 +120,14 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.TimeSpanBuilder Seconds(this double seconds, System.TimeSpan offset) { }
         public static aweXpect.Chronology.TimeSpanBuilder Seconds(this int seconds) { }
         public static aweXpect.Chronology.TimeSpanBuilder Seconds(this int seconds, System.TimeSpan offset) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Ticks(this int ticks) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Ticks(this int ticks, System.TimeSpan offset) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Ticks(this long ticks) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Ticks(this long ticks, System.TimeSpan offset) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Weeks(this double weeks) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Weeks(this double weeks, System.TimeSpan offset) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Weeks(this int weeks) { }
+        public static aweXpect.Chronology.TimeSpanBuilder Weeks(this int weeks, System.TimeSpan offset) { }
     }
 }
 
