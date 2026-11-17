@@ -131,7 +131,7 @@ DateTime fromTimeSpan = 24.December(2024).At(18.Hours(30.Minutes()));
 
 `At` also works on an existing `DateTime` or `DateOnly` and replaces its time of day.
 
-A component outside its range, e.g. `At(24, 0)` or `At(18, 60)`, throws an `ArgumentOutOfRangeException`.
+A component outside its range, e.g. `At(24, 0)` or `At(18, 60)`, and a `TimeSpan` outside a single day, e.g. `At(24.Hours())` or `At(-1.Hours())`, throw an `ArgumentOutOfRangeException`.
 
 ### Kind
 
