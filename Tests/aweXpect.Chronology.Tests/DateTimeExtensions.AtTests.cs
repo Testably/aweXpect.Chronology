@@ -57,13 +57,15 @@ public sealed partial class DateTimeExtensions
 		}
 
 		[Test]
-		public async Task FromBuilder_WithHourAndMinutes_ShouldKeepKind()
+		[Arguments(DateTimeKind.Local)]
+		[Arguments(DateTimeKind.Utc)]
+		public async Task FromBuilder_WithHourAndMinutes_ShouldKeepKind(DateTimeKind kind)
 		{
-			DateBuilder date = new(new DateTime(2024, 12, 24, 0, 0, 0, DateTimeKind.Utc));
+			DateBuilder date = new(new DateTime(2024, 12, 24, 0, 0, 0, kind));
 
 			DateTime result = date.At(18, 30);
 
-			await That(result.Kind).IsEqualTo(DateTimeKind.Utc);
+			await That(result).HasKind().EqualTo(kind);
 		}
 
 		[Test]
@@ -103,6 +105,18 @@ public sealed partial class DateTimeExtensions
 			DateTime result = 24.December(2024).At(18.Hours(30.Minutes(15.Seconds())));
 
 			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		public async Task FromBuilder_WithTimeSpan_ShouldReplaceTime()
+		{
+			DateTime expected = new(2024, 12, 24, 6, 0, 0);
+			DateBuilder date = 24.December(2024) + 18.Hours();
+
+			DateTime result = date.At(6.Hours());
+
+			await That(result).IsEqualTo(expected)
+				.Because("At sets the time of day like the DateTime overload instead of adding to the time");
 		}
 
 		[Test]

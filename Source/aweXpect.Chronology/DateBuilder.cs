@@ -42,9 +42,6 @@ public readonly struct DateBuilder(DateTime value)
 	public static DateBuilder operator -(DateBuilder builder, TimeSpan time)
 		=> new(builder._value - time);
 
-	internal DateTimeBuilder Add(TimeSpan time)
-		=> new(_value + time);
-
 	internal DateTimeOffsetBuilder SetOffset(TimeSpan offset)
 		=> new(new DateTimeOffset(_value, offset));
 }
