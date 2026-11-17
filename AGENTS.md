@@ -13,7 +13,7 @@ Correctness is a must. The other goals are strong defaults and win in this order
 - `netstandard2.0` and `net48` have no polyfills for `IsExternalInit`, `System.Index` or `System.Range`: no records, `init` accessors, list patterns or ranges. Build `net48` first when using a newer language feature.
 - The library compiles with `TreatWarningsAsErrors`, nullable enabled and XML docs generated. A missing XML doc (CS1591) only warns, but every public member has one; keep it that way. Assemblies are strong-name signed with `strongname.snk`.
 - The package has no runtime dependencies (`Nullable` is a private, build-only polyfill). Do not add one without the maintainer's agreement. The code uses no reflection; keep it that way so it stays trimming and AOT friendly.
-- All public types live in the `aweXpect.Chronology` namespace. Fluent methods return the `readonly struct` builders (`TimeSpanBuilder`, `DateBuilder`, `DateTimeBuilder`, `DateTimeOffsetBuilder`) so that implicit conversions work.
+- All public types live in the `aweXpect.Chronology` namespace, except the `TypeConverter`s of the builders in `aweXpect.Chronology.ComponentModel`: they serve libraries that only see a builder as `object` (such as an equivalency comparison) and stay out of the namespace test authors import. A converter is public with a public parameterless constructor and mirrors the implicit conversions of its builder. Fluent methods return the `readonly struct` builders (`TimeSpanBuilder`, `DateBuilder`, `DateTimeBuilder`, `DateTimeOffsetBuilder`) so that implicit conversions work.
 - Code style follows `.editorconfig`: tabs, file-scoped namespaces, explicit types instead of `var`.
 
 ## Validation
