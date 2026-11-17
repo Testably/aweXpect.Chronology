@@ -36,6 +36,30 @@ public sealed class TimeSpanBuilderTests
 	}
 
 	[Test]
+	public async Task MultiplyOperator_WithMultiplierFirst_ShouldMultiplyTimeSpan()
+	{
+		TimeSpanBuilder expected = 6.Hours();
+		TimeSpanBuilder builder = new(3.Hours());
+
+		TimeSpan result = 2 * builder;
+
+		await That(result).IsEqualTo(expected);
+	}
+
+	[Test]
+	public async Task MultiplyOperator_WithMultiplierFirst_WhenMultiplierIsNaN_ShouldThrowArgumentException()
+	{
+		TimeSpanBuilder builder = new(1.Hours());
+
+		void Act() => _ = double.NaN * builder;
+
+		await That(Act).ThrowsExactly<ArgumentException>()
+			.WithParamName("factor").And
+			.WithMessage("TimeSpan does not accept floating point Not-a-Number values.*").AsWildcard()
+			.Because("the operator delegates to the one with the multiplier second, like the BCL");
+	}
+
+	[Test]
 	public async Task MultiplyOperator_WhenMultiplierIsNaN_ShouldThrowArgumentException()
 	{
 		TimeSpanBuilder builder = new(1.Hours());

@@ -88,6 +88,7 @@ namespace aweXpect.Chronology
         public static implicit operator System.TimeOnly(aweXpect.Chronology.TimeSpanBuilder builder) { }
         public static implicit operator System.TimeSpan(aweXpect.Chronology.TimeSpanBuilder builder) { }
         public static aweXpect.Chronology.TimeSpanBuilder operator *(aweXpect.Chronology.TimeSpanBuilder builder, double multiplier) { }
+        public static aweXpect.Chronology.TimeSpanBuilder operator *(double multiplier, aweXpect.Chronology.TimeSpanBuilder builder) { }
         public static aweXpect.Chronology.TimeSpanBuilder operator -(aweXpect.Chronology.TimeSpanBuilder builder, System.TimeSpan time) { }
         public static aweXpect.Chronology.TimeSpanBuilder operator -(aweXpect.Chronology.TimeSpanBuilder instance) { }
     }

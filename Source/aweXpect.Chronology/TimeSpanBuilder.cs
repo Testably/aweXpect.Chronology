@@ -62,6 +62,12 @@ public readonly struct TimeSpanBuilder(TimeSpan value)
 #endif
 
 	/// <summary>
+	///     Multiplies a <see cref="TimeSpan" /> with the <paramref name="multiplier" />.
+	/// </summary>
+	public static TimeSpanBuilder operator *(double multiplier, TimeSpanBuilder builder)
+		=> builder * multiplier;
+
+	/// <summary>
 	///     Divides a <see cref="TimeSpan" /> by the <paramref name="divisor" />.
 	/// </summary>
 	public static TimeSpanBuilder operator /(TimeSpanBuilder builder, double divisor)
