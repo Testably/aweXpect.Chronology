@@ -3,21 +3,41 @@
 namespace aweXpect.Chronology
 {
     [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.DateBuilderConverter))]
-    public readonly struct DateBuilder
+    public readonly struct DateBuilder : System.IComparable<aweXpect.Chronology.DateBuilder>, System.IEquatable<aweXpect.Chronology.DateBuilder>
     {
         public DateBuilder(System.DateTime value) { }
+        public int CompareTo(aweXpect.Chronology.DateBuilder other) { }
+        public bool Equals(aweXpect.Chronology.DateBuilder other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
         public override string ToString() { }
         public static aweXpect.Chronology.DateBuilder operator +(aweXpect.Chronology.DateBuilder builder, System.TimeSpan time) { }
+        public static bool operator ==(aweXpect.Chronology.DateBuilder left, aweXpect.Chronology.DateBuilder right) { }
+        public static bool operator >(aweXpect.Chronology.DateBuilder left, aweXpect.Chronology.DateBuilder right) { }
+        public static bool operator >=(aweXpect.Chronology.DateBuilder left, aweXpect.Chronology.DateBuilder right) { }
         public static implicit operator System.DateTime(aweXpect.Chronology.DateBuilder builder) { }
+        public static bool operator !=(aweXpect.Chronology.DateBuilder left, aweXpect.Chronology.DateBuilder right) { }
+        public static bool operator <(aweXpect.Chronology.DateBuilder left, aweXpect.Chronology.DateBuilder right) { }
+        public static bool operator <=(aweXpect.Chronology.DateBuilder left, aweXpect.Chronology.DateBuilder right) { }
         public static aweXpect.Chronology.DateBuilder operator -(aweXpect.Chronology.DateBuilder builder, System.TimeSpan time) { }
     }
     [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.DateTimeBuilderConverter))]
-    public readonly struct DateTimeBuilder
+    public readonly struct DateTimeBuilder : System.IComparable<aweXpect.Chronology.DateTimeBuilder>, System.IEquatable<aweXpect.Chronology.DateTimeBuilder>
     {
         public DateTimeBuilder(System.DateTime value) { }
+        public int CompareTo(aweXpect.Chronology.DateTimeBuilder other) { }
+        public bool Equals(aweXpect.Chronology.DateTimeBuilder other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
         public override string ToString() { }
         public static aweXpect.Chronology.DateTimeBuilder operator +(aweXpect.Chronology.DateTimeBuilder builder, System.TimeSpan time) { }
+        public static bool operator ==(aweXpect.Chronology.DateTimeBuilder left, aweXpect.Chronology.DateTimeBuilder right) { }
+        public static bool operator >(aweXpect.Chronology.DateTimeBuilder left, aweXpect.Chronology.DateTimeBuilder right) { }
+        public static bool operator >=(aweXpect.Chronology.DateTimeBuilder left, aweXpect.Chronology.DateTimeBuilder right) { }
         public static implicit operator System.DateTime(aweXpect.Chronology.DateTimeBuilder builder) { }
+        public static bool operator !=(aweXpect.Chronology.DateTimeBuilder left, aweXpect.Chronology.DateTimeBuilder right) { }
+        public static bool operator <(aweXpect.Chronology.DateTimeBuilder left, aweXpect.Chronology.DateTimeBuilder right) { }
+        public static bool operator <=(aweXpect.Chronology.DateTimeBuilder left, aweXpect.Chronology.DateTimeBuilder right) { }
         public static aweXpect.Chronology.DateTimeBuilder operator -(aweXpect.Chronology.DateTimeBuilder builder, System.TimeSpan time) { }
     }
     public static class DateTimeExtensions
@@ -54,13 +74,23 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.DateTimeBuilder ToUniversalTime(this aweXpect.Chronology.DateTimeBuilder dateTime) { }
     }
     [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.DateTimeOffsetBuilderConverter))]
-    public readonly struct DateTimeOffsetBuilder
+    public readonly struct DateTimeOffsetBuilder : System.IComparable<aweXpect.Chronology.DateTimeOffsetBuilder>, System.IEquatable<aweXpect.Chronology.DateTimeOffsetBuilder>
     {
         public DateTimeOffsetBuilder(System.DateTimeOffset value) { }
+        public int CompareTo(aweXpect.Chronology.DateTimeOffsetBuilder other) { }
+        public bool Equals(aweXpect.Chronology.DateTimeOffsetBuilder other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
         public override string ToString() { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder operator +(aweXpect.Chronology.DateTimeOffsetBuilder builder, System.TimeSpan time) { }
+        public static bool operator ==(aweXpect.Chronology.DateTimeOffsetBuilder left, aweXpect.Chronology.DateTimeOffsetBuilder right) { }
+        public static bool operator >(aweXpect.Chronology.DateTimeOffsetBuilder left, aweXpect.Chronology.DateTimeOffsetBuilder right) { }
+        public static bool operator >=(aweXpect.Chronology.DateTimeOffsetBuilder left, aweXpect.Chronology.DateTimeOffsetBuilder right) { }
         public static implicit operator System.DateTime(aweXpect.Chronology.DateTimeOffsetBuilder builder) { }
         public static implicit operator System.DateTimeOffset(aweXpect.Chronology.DateTimeOffsetBuilder builder) { }
+        public static bool operator !=(aweXpect.Chronology.DateTimeOffsetBuilder left, aweXpect.Chronology.DateTimeOffsetBuilder right) { }
+        public static bool operator <(aweXpect.Chronology.DateTimeOffsetBuilder left, aweXpect.Chronology.DateTimeOffsetBuilder right) { }
+        public static bool operator <=(aweXpect.Chronology.DateTimeOffsetBuilder left, aweXpect.Chronology.DateTimeOffsetBuilder right) { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder operator -(aweXpect.Chronology.DateTimeOffsetBuilder builder, System.TimeSpan time) { }
     }
     public static class DateTimeOffsetExtensions
