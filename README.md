@@ -52,7 +52,7 @@ The methods return lightweight builders that convert implicitly to the .NET type
 
 | Feature                                         | Methods                                                         | Example                                   |
 |-------------------------------------------------|-----------------------------------------------------------------|-------------------------------------------|
-| [Units](#units)                                 | `Milliseconds`, `Seconds`, `Minutes`, `Hours`, `Days`           | `5.Minutes()`                             |
+| [Units](#units)                                 | `Ticks` … `Weeks`                                               | `5.Minutes()`                             |
 | [Combine values](#combine-values)               | the same methods with a `TimeSpan` argument                     | `1.Minutes(30.Seconds())`                 |
 | [Arithmetic](#arithmetic)                       | `+`, `-`, `*` (by `double`), `/` (by `double`), unary `-`       | `5.Minutes() * 2`                         |
 | [Dates](#dates)                                 | `January` … `December`                                          | `24.December(2024)`                       |
@@ -68,11 +68,13 @@ The methods return lightweight builders that convert implicitly to the .NET type
 
 ### Units
 
-The package adds the extension methods `Milliseconds()`, `Seconds()`, `Minutes()`, `Hours()` and `Days()` on `int` and `double`:
+The package adds the extension methods `Ticks()`, `Microseconds()`, `Milliseconds()`, `Seconds()`, `Minutes()`, `Hours()`, `Days()` and `Weeks()` on `int` and `double` (`Ticks()` on `int` and `long`):
 
 ```csharp
 TimeSpan timeout = 10.Seconds();
 TimeSpan duration = 1.5.Hours();
+TimeSpan retention = 2.Weeks();
+TimeSpan latency = 250.Microseconds();
 ```
 
 ### Combine values

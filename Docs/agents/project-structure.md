@@ -21,7 +21,7 @@ All public types are in the namespace `aweXpect.Chronology`. The design is a set
 
 | File | Public type | Role |
 |---|---|---|
-| `TimeSpanBuilderExtensions.cs` | `TimeSpanBuilderExtensions` | `Milliseconds`, `Seconds`, `Minutes`, `Hours`, `Days` on `int` and `double`, each with an optional `TimeSpan` offset. |
+| `TimeSpanBuilderExtensions.cs` | `TimeSpanBuilderExtensions` | `Ticks` (on `int` and `long`), `Microseconds`, `Milliseconds`, `Seconds`, `Minutes`, `Hours`, `Days`, `Weeks` on `int` and `double`, each with an optional `TimeSpan` offset. |
 | `TimeSpanBuilder.cs` | `TimeSpanBuilder` | Wraps a `TimeSpan`; arithmetic operators and conversions to `TimeSpan` (and `TimeOnly`). |
 | `DateTimeExtensions.cs` | `DateTimeExtensions` | `January` to `December` on `int` (day) with the year, `At` (also on `DateTime` and, on .NET 8+, `DateOnly`), `AsUtc`, `AsLocal`, `Before` and `After`. |
 | `DateBuilder.cs` | `DateBuilder` | A date without time; converts to `DateTime` (and `DateOnly`). |
