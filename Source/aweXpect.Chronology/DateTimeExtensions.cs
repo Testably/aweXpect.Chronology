@@ -109,7 +109,7 @@ public static class DateTimeExtensions
 	/// </summary>
 	public static DateTimeBuilder At(this DateBuilder date, int hours, int minutes, int seconds = 0,
 		int milliseconds = 0)
-		=> date.Add(hours.Hours(minutes.Minutes(seconds.Seconds(milliseconds.Milliseconds()))));
+		=> new(((DateTime)date).Date + new DateTime(1, 1, 1, hours, minutes, seconds, milliseconds).TimeOfDay);
 
 	/// <summary>
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and <paramref name="time" />.

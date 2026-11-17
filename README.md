@@ -120,6 +120,8 @@ DateTime fromTimeSpan = 24.December(2024).At(18.Hours(30.Minutes()));
 
 `At` also works on an existing `DateTime` or `DateOnly` and replaces its time of day.
 
+A component outside its range, e.g. `At(24, 0)` or `At(18, 60)`, throws an `ArgumentOutOfRangeException`.
+
 ### Kind
 
 `AsUtc()` and `AsLocal()` set the `DateTimeKind` of a date with a time of day or of an existing `DateTime`:
