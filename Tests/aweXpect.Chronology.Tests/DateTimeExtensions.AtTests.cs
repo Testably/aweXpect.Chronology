@@ -5,16 +5,6 @@ public sealed partial class DateTimeExtensions
 	public sealed class AtTests
 	{
 		[Test]
-		public async Task FromBuilder_WithTimeSpan_ShouldAddTime()
-		{
-			DateTime expected = new(2024, 12, 24, 18, 30, 15);
-
-			DateTime result = 24.December(2024).At(18.Hours(30.Minutes(15.Seconds())));
-
-			await That(result).IsEqualTo(expected);
-		}
-
-		[Test]
 		public async Task FromBuilder_WithHourAndMinutes_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 00);
@@ -45,12 +35,11 @@ public sealed partial class DateTimeExtensions
 		}
 
 		[Test]
-		public async Task FromDateTime_WithTimeSpan_ShouldAddTime()
+		public async Task FromBuilder_WithTimeSpan_ShouldAddTime()
 		{
 			DateTime expected = new(2024, 12, 24, 18, 30, 15);
-			DateTime date = 24.December(2024);
 
-			DateTime result = date.At(18.Hours(30.Minutes(15.Seconds())));
+			DateTime result = 24.December(2024).At(18.Hours(30.Minutes(15.Seconds())));
 
 			await That(result).IsEqualTo(expected);
 		}
@@ -84,6 +73,40 @@ public sealed partial class DateTimeExtensions
 			DateTime date = 24.December(2024);
 
 			DateTime result = date.At(18, 30, 0, 150);
+
+			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		public async Task FromDateTime_WithTimeSpan_ShouldAddTime()
+		{
+			DateTime expected = new(2024, 12, 24, 18, 30, 15);
+			DateTime date = 24.December(2024);
+
+			DateTime result = date.At(18.Hours(30.Minutes(15.Seconds())));
+
+			await That(result).IsEqualTo(expected);
+		}
+
+		[Test]
+		[Arguments(DateTimeKind.Local)]
+		[Arguments(DateTimeKind.Utc)]
+		public async Task FromDateTime_WithTimeSpan_ShouldKeepKind(DateTimeKind kind)
+		{
+			DateTime date = new(2024, 12, 24, 10, 45, 20, kind);
+
+			DateTime result = date.At(18.Hours());
+
+			await That(result).HasKind().EqualTo(kind);
+		}
+
+		[Test]
+		public async Task FromDateTime_WithTimeSpan_ShouldReplaceExistingTime()
+		{
+			DateTime expected = new(2024, 12, 24, 18, 30, 15);
+			DateTime date = new(2024, 12, 24, 10, 45, 20, 500);
+
+			DateTime result = date.At(18.Hours(30.Minutes(15.Seconds())));
 
 			await That(result).IsEqualTo(expected);
 		}

@@ -115,7 +115,7 @@ public static class DateTimeExtensions
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and <paramref name="time" />.
 	/// </summary>
 	public static DateTime At(this DateTime date, TimeSpan time)
-		=> date + time;
+		=> date.Date + time;
 
 	/// <summary>
 	///     Creates a <see cref="DateTime" /> for the given <paramref name="date" /> and time
