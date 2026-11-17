@@ -17,7 +17,7 @@ Shared MSBuild settings: `Source/Directory.Build.props` (target frameworks, pack
 
 ## Library
 
-All public types are in the namespace `aweXpect.Chronology`. The design is a set of extension methods that return small `readonly struct` builders; each builder wraps one BCL value and converts to it implicitly, and on .NET 8+ also to `DateOnly`/`TimeOnly` where it makes sense.
+All public types are in the namespace `aweXpect.Chronology`, except the converters in `aweXpect.Chronology.ComponentModel`. The design is a set of extension methods that return small `readonly struct` builders; each builder wraps one BCL value and converts to it implicitly, and on .NET 8+ also to `DateOnly`/`TimeOnly` where it makes sense.
 
 | File | Public type | Role |
 |---|---|---|
@@ -28,6 +28,7 @@ All public types are in the namespace `aweXpect.Chronology`. The design is a set
 | `DateTimeBuilder.cs` | `DateTimeBuilder` | A date with time; converts to `DateTime` (and `DateOnly`/`TimeOnly`). |
 | `DateTimeOffsetExtensions.cs` | `DateTimeOffsetExtensions` | `WithOffset` on `DateBuilder`, `DateTimeBuilder` and `DateTime`; `Before` and `After` on `DateTimeOffsetBuilder` and `DateTimeOffset`. |
 | `DateTimeOffsetBuilder.cs` | `DateTimeOffsetBuilder` | Wraps a `DateTimeOffset`; converts to `DateTimeOffset` and `DateTime` (and `DateOnly`/`TimeOnly`). |
+| `ComponentModel/<Builder>Converter.cs` | `DateBuilderConverter`, `DateTimeBuilderConverter`, `DateTimeOffsetBuilderConverter`, `TimeSpanBuilderConverter` | The `TypeConverter` each builder declares with `[TypeConverter]`; converts to the same types as the builder's implicit conversions, for code that only sees the builder as `object`. |
 
 The date builders also support `+` and `-` with a `TimeSpan`.
 

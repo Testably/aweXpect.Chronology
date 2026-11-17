@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using aweXpect.Chronology.ComponentModel;
 
 namespace aweXpect.Chronology;
 
@@ -11,6 +13,7 @@ namespace aweXpect.Chronology;
 ///     A builder that allows implicit cast to <see cref="TimeSpan" />.
 /// </summary>
 #endif
+[TypeConverter(typeof(TimeSpanBuilderConverter))]
 public readonly struct TimeSpanBuilder(TimeSpan value)
 	: IEquatable<TimeSpanBuilder>, IComparable<TimeSpanBuilder>
 {

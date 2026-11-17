@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using aweXpect.Chronology.ComponentModel;
 
 namespace aweXpect.Chronology;
 
@@ -12,6 +14,7 @@ namespace aweXpect.Chronology;
 ///     A builder that allows implicit cast to <see cref="DateTimeOffset" /> and <see cref="DateTime" />.
 /// </summary>
 #endif
+[TypeConverter(typeof(DateTimeOffsetBuilderConverter))]
 public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
 {
 	private readonly DateTimeOffset _value = value;

@@ -2,6 +2,7 @@
 [assembly: System.Runtime.Versioning.TargetFramework(".NETCoreApp,Version=v10.0", FrameworkDisplayName = ".NET 10.0")]
 namespace aweXpect.Chronology
 {
+    [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.DateBuilderConverter))]
     public readonly struct DateBuilder
     {
         public DateBuilder(System.DateTime value) { }
@@ -11,6 +12,7 @@ namespace aweXpect.Chronology
         public static implicit operator System.DateTime(aweXpect.Chronology.DateBuilder builder) { }
         public static aweXpect.Chronology.DateBuilder operator -(aweXpect.Chronology.DateBuilder builder, System.TimeSpan time) { }
     }
+    [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.DateTimeBuilderConverter))]
     public readonly struct DateTimeBuilder
     {
         public DateTimeBuilder(System.DateTime value) { }
@@ -56,6 +58,7 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.DateTimeBuilder ToLocalTime(this aweXpect.Chronology.DateTimeBuilder dateTime) { }
         public static aweXpect.Chronology.DateTimeBuilder ToUniversalTime(this aweXpect.Chronology.DateTimeBuilder dateTime) { }
     }
+    [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.DateTimeOffsetBuilderConverter))]
     public readonly struct DateTimeOffsetBuilder
     {
         public DateTimeOffsetBuilder(System.DateTimeOffset value) { }
@@ -81,6 +84,7 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.DateTimeOffsetBuilder WithOffset(this aweXpect.Chronology.DateBuilder dateTime, System.TimeSpan offset) { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder WithOffset(this aweXpect.Chronology.DateTimeBuilder dateTime, System.TimeSpan offset) { }
     }
+    [System.ComponentModel.TypeConverter(typeof(aweXpect.Chronology.ComponentModel.TimeSpanBuilderConverter))]
     public readonly struct TimeSpanBuilder : System.IComparable<aweXpect.Chronology.TimeSpanBuilder>, System.IEquatable<aweXpect.Chronology.TimeSpanBuilder>
     {
         public TimeSpanBuilder(System.TimeSpan value) { }
@@ -138,6 +142,33 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.TimeSpanBuilder Weeks(this double weeks, System.TimeSpan offset) { }
         public static aweXpect.Chronology.TimeSpanBuilder Weeks(this int weeks) { }
         public static aweXpect.Chronology.TimeSpanBuilder Weeks(this int weeks, System.TimeSpan offset) { }
+    }
+}
+namespace aweXpect.Chronology.ComponentModel
+{
+    public sealed class DateBuilderConverter : System.ComponentModel.TypeConverter
+    {
+        public DateBuilderConverter() { }
+        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) { }
+        public override object? ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type destinationType) { }
+    }
+    public sealed class DateTimeBuilderConverter : System.ComponentModel.TypeConverter
+    {
+        public DateTimeBuilderConverter() { }
+        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) { }
+        public override object? ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type destinationType) { }
+    }
+    public sealed class DateTimeOffsetBuilderConverter : System.ComponentModel.TypeConverter
+    {
+        public DateTimeOffsetBuilderConverter() { }
+        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) { }
+        public override object? ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type destinationType) { }
+    }
+    public sealed class TimeSpanBuilderConverter : System.ComponentModel.TypeConverter
+    {
+        public TimeSpanBuilderConverter() { }
+        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) { }
+        public override object? ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type destinationType) { }
     }
 }
 
