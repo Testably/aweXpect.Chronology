@@ -25,6 +25,7 @@ When a public API change is intended, accept it in one of these ways and commit 
 - Run the explicit test, which a run without this filter skips: `dotnet test --project Tests/aweXpect.Chronology.Api.Tests --treenode-filter "/*/*/ApiApprovalTests/AcceptApiChanges"`.
 - Run the tests with `AWEXPECT_ACCEPT_SNAPSHOTS=all` (PowerShell: `$env:AWEXPECT_ACCEPT_SNAPSHOTS = 'all'`).
 - Rename the `*.awexpect-snapshot.pending.cs` file that a failing test writes next to the snapshot.
+- Take over the change in the diff tool. Locally, a failing test opens one through `aweXpect.Snapshots.DiffEngine` (e.g. Rider, Visual Studio or VS Code), which compares the pending file with the snapshot. It never opens on a build server; set `DiffEngine_Disabled=true` to turn it off locally.
 
 Never commit `*.awexpect-snapshot.pending.cs` files.
 
