@@ -53,6 +53,8 @@ namespace aweXpect.Chronology
         public static aweXpect.Chronology.DateBuilder November(this int day, int year) { }
         public static aweXpect.Chronology.DateBuilder October(this int day, int year) { }
         public static aweXpect.Chronology.DateBuilder September(this int day, int year) { }
+        public static aweXpect.Chronology.DateTimeBuilder ToLocalTime(this aweXpect.Chronology.DateTimeBuilder dateTime) { }
+        public static aweXpect.Chronology.DateTimeBuilder ToUniversalTime(this aweXpect.Chronology.DateTimeBuilder dateTime) { }
     }
     public readonly struct DateTimeOffsetBuilder
     {
