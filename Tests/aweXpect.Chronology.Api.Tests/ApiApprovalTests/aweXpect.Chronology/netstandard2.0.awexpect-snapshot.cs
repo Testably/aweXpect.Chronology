@@ -5,6 +5,7 @@ namespace aweXpect.Chronology
     public readonly struct DateBuilder
     {
         public DateBuilder(System.DateTime value) { }
+        public override string ToString() { }
         public static aweXpect.Chronology.DateBuilder operator +(aweXpect.Chronology.DateBuilder builder, System.TimeSpan time) { }
         public static implicit operator System.DateTime(aweXpect.Chronology.DateBuilder builder) { }
         public static aweXpect.Chronology.DateBuilder operator -(aweXpect.Chronology.DateBuilder builder, System.TimeSpan time) { }
@@ -12,6 +13,7 @@ namespace aweXpect.Chronology
     public readonly struct DateTimeBuilder
     {
         public DateTimeBuilder(System.DateTime value) { }
+        public override string ToString() { }
         public static aweXpect.Chronology.DateTimeBuilder operator +(aweXpect.Chronology.DateTimeBuilder builder, System.TimeSpan time) { }
         public static implicit operator System.DateTime(aweXpect.Chronology.DateTimeBuilder builder) { }
         public static aweXpect.Chronology.DateTimeBuilder operator -(aweXpect.Chronology.DateTimeBuilder builder, System.TimeSpan time) { }
@@ -50,6 +52,7 @@ namespace aweXpect.Chronology
     public readonly struct DateTimeOffsetBuilder
     {
         public DateTimeOffsetBuilder(System.DateTimeOffset value) { }
+        public override string ToString() { }
         public static aweXpect.Chronology.DateTimeOffsetBuilder operator +(aweXpect.Chronology.DateTimeOffsetBuilder builder, System.TimeSpan time) { }
         public static implicit operator System.DateTime(aweXpect.Chronology.DateTimeOffsetBuilder builder) { }
         public static implicit operator System.DateTimeOffset(aweXpect.Chronology.DateTimeOffsetBuilder builder) { }
@@ -72,6 +75,7 @@ namespace aweXpect.Chronology
     public readonly struct TimeSpanBuilder
     {
         public TimeSpanBuilder(System.TimeSpan value) { }
+        public override string ToString() { }
         public static aweXpect.Chronology.TimeSpanBuilder operator +(aweXpect.Chronology.TimeSpanBuilder builder, System.TimeSpan time) { }
         public static aweXpect.Chronology.TimeSpanBuilder operator /(aweXpect.Chronology.TimeSpanBuilder builder, double divisor) { }
         public static implicit operator System.TimeSpan(aweXpect.Chronology.TimeSpanBuilder builder) { }

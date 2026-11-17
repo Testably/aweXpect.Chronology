@@ -28,6 +28,10 @@ public readonly struct DateTimeOffsetBuilder(DateTimeOffset value)
 	public static implicit operator DateTimeOffset(DateTimeOffsetBuilder builder)
 		=> builder._value;
 
+	/// <inheritdoc cref="DateTimeOffset.ToString()" />
+	public override string ToString()
+		=> _value.ToString();
+
 #if NET8_0_OR_GREATER
 	/// <summary>
 	///     Implicitly casts the <see cref="DateTimeBuilder" /> to a <see cref="DateOnly" />.

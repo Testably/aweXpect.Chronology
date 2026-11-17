@@ -59,6 +59,8 @@ TimeSpan duration = 42.Seconds();
 await That(duration).IsEqualTo(43.Seconds()).Within(1.Seconds());
 ```
 
+`ToString()` returns the value as text, so string interpolation and the debugger show e.g. `00:05:00` for `5.Minutes()`.
+
 ## Overview
 
 | Feature                                         | Methods                                                         | Example                                   |

@@ -161,4 +161,15 @@ public sealed class TimeSpanBuilderTests
 		await That(result).IsEqualTo(expected);
 	}
 #endif
+
+	[Test]
+	public async Task ToString_ShouldReturnTimeSpanString()
+	{
+		TimeSpanBuilder builder = 1.Days(2.Hours(30.Minutes()));
+
+		string result = $"{builder}";
+
+		await That(result).IsEqualTo("1.02:30:00")
+			.Because("string interpolation should print the value instead of the type name");
+	}
 }

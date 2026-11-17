@@ -45,7 +45,7 @@ DateTimeOffset end = 25.December(2024).At(6, 0).WithOffset(2.Hours());
 DateTime reminder = 3.Hours().Before(start);
 ```
 
-The methods return lightweight builders that convert implicitly to the .NET types, so you can pass them wherever a `TimeSpan`, `DateTime` or `DateTimeOffset` is expected.
+The methods return lightweight builders that convert implicitly to the .NET types, so you can pass them wherever a `TimeSpan`, `DateTime` or `DateTimeOffset` is expected. `ToString()` returns the value as text, so string interpolation and the debugger show e.g. `00:05:00` for `5.Minutes()`.
 
 
 ## Overview
