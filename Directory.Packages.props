@@ -16,7 +16,7 @@
 		<PackageVersion Include="Meziantou.Analyzer" Version="2.0.163" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageVersion Include="aweXpect" Version="4.2.0" />
+		<PackageVersion Include="aweXpect" Version="4.3.0" />
 		<PackageVersion Include="aweXpect.Snapshots.DiffEngine" Version="4.2.0" />
 		<PackageVersion Include="aweXpect.Snapshots.PublicApi" Version="4.2.0" />
 		<PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
